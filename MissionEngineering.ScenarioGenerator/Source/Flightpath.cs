@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MissionEngineering.ScenarioGenerator;
+﻿namespace MissionEngineering.ScenarioGenerator;
 
 public class Flightpath
 {
-    public required FlightpathSettings FlightpathSettings { get; set; }
+    public FlightpathSettings FlightpathSettings { get; set; }
 
     public FlightpathData FlightpathData { get; set; }
 
     public List<FlightpathData> FlightpathDataList { get; set; }
-  
+
     public Flightpath()
     {
+        FlightpathSettings = new FlightpathSettings();
         FlightpathData = new FlightpathData();
         FlightpathDataList = new List<FlightpathData>();
     }

@@ -20,7 +20,7 @@ public sealed class FlightpathTests
 
         var flightpath = new Flightpath()
         {
-            FlightpathSettings = flightpathSettings 
+            FlightpathSettings = flightpathSettings
         };
 
         var fileName = @"C:\Temp\MissionEngineeringToolbox\FlightpathData_Test_1.csv";

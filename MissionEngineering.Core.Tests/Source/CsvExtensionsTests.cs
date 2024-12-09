@@ -7,7 +7,6 @@ public sealed class CsvExtensionsTests
     public void WriteToCsvFile_WithRecords_ExpectSuccess()
     {
         // Arrange:
-        var fileName = @"C:\Temp\MissionEngineeringToolbox\FlightpathData_Test_1.csv";
 
         // Act:
 

@@ -1,7 +1,4 @@
-﻿using System.Linq.Expressions;
-using System.Numerics;
-
-namespace MissionEngineering.MathLibrary;
+﻿namespace MissionEngineering.MathLibrary;
 
 public record PositionNED
 {
