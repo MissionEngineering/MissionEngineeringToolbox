@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Simulati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Core", "MissionEngineering.Core\MissionEngineering.Core.csproj", "{4824CAC2-AD69-4702-82DA-54018235D5EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Core.Tests", "MissionEngineering.Core.Tests\MissionEngineering.Core.Tests.csproj", "{D2EFE464-F347-410A-98AE-D11013DD44EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.ScenarioGenerator.Tests", "MissionEngineering.ScenarioGenerator.Tests\MissionEngineering.ScenarioGenerator.Tests.csproj", "{A76C50CD-8649-4EF8-9159-A52AA14C7BD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{4824CAC2-AD69-4702-82DA-54018235D5EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4824CAC2-AD69-4702-82DA-54018235D5EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4824CAC2-AD69-4702-82DA-54018235D5EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2EFE464-F347-410A-98AE-D11013DD44EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2EFE464-F347-410A-98AE-D11013DD44EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2EFE464-F347-410A-98AE-D11013DD44EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2EFE464-F347-410A-98AE-D11013DD44EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A76C50CD-8649-4EF8-9159-A52AA14C7BD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76C50CD-8649-4EF8-9159-A52AA14C7BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76C50CD-8649-4EF8-9159-A52AA14C7BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76C50CD-8649-4EF8-9159-A52AA14C7BD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

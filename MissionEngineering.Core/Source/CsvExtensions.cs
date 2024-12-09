@@ -1,4 +1,6 @@
 ﻿using CsvHelper;
+using CsvHelper.TypeConversion;
+using System.Formats.Asn1;
 using System.Globalization;
 
 namespace MissionEngineering.Core.Source;
@@ -9,8 +11,11 @@ public static class CsvExtensions
     {
         using var writer = new StreamWriter(fileName);
 
-        using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+        using var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
 
-        csv.WriteRecords(records);
+        var options = new TypeConverterOptions { Formats = ["dd/MM/yyyy hh:mm:ss.fff"] };
+        csvWriter.Context.TypeConverterOptionsCache.AddOptions<DateTime>(options);
+
+        csvWriter.WriteRecords(records);
     }
 }

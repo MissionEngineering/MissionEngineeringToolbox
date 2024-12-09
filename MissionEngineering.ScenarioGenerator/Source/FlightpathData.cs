@@ -1,4 +1,5 @@
-﻿using MissionEngineering.MathLibrary;
+﻿using System.Diagnostics.CodeAnalysis;
+using MissionEngineering.MathLibrary;
 using MissionEngineering.Simulation;
 
 namespace MissionEngineering.ScenarioGenerator;
@@ -24,4 +25,19 @@ public record FlightpathData
     public required Attitude Attitude { get; init; }
 
     public required AttitudeRate AttitudeRate { get; init; }
+
+    [SetsRequiredMembers]
+    public FlightpathData()
+    {
+        FlightpathId = 0;
+        FlightpathName = "";
+        TimeStamp = new TimeStamp();
+        PositionLLA = new PositionLLA(0.0, 0.0, 0.0);
+        PositionNED = new PositionNED(0.0, 0.0, 0.0);
+        VelocityNED = new VelocityNED(0.0, 0.0, 0.0);
+        AccelerationNED = new AccelerationNED(0.0, 0.0, 0.0);
+        AccelerationTBA = new AccelerationTBA(0.0, 0.0, 0.0);
+        Attitude = new Attitude(0.0, 0.0, 0.0);
+        AttitudeRate = new AttitudeRate(0.0, 0.0, 0.0);
+    }
 }
