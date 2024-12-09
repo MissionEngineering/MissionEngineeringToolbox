@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.MathLibr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.MathLibrary.Tests", "MissionEngineering.MathLibrary.Tests\MissionEngineering.MathLibrary.Tests.csproj", "{CA6400BB-F740-4AA3-AE4A-B1E9FEBA521D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.ScenarioGenerator", "MissionEngineering.ScenarioGenerator\MissionEngineering.ScenarioGenerator.csproj", "{18C0CC9F-9B33-48F2-BC18-CC2C4733D34D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Simulation.Core", "MissionEngineering.Simulation.Core\MissionEngineering.Simulation.Core.csproj", "{8E3290D3-B379-4BD9-A453-9BD50CB5FF43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Core", "MissionEngineering.Core\MissionEngineering.Core.csproj", "{4824CAC2-AD69-4702-82DA-54018235D5EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,18 @@ Global
 		{CA6400BB-F740-4AA3-AE4A-B1E9FEBA521D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA6400BB-F740-4AA3-AE4A-B1E9FEBA521D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA6400BB-F740-4AA3-AE4A-B1E9FEBA521D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18C0CC9F-9B33-48F2-BC18-CC2C4733D34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18C0CC9F-9B33-48F2-BC18-CC2C4733D34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18C0CC9F-9B33-48F2-BC18-CC2C4733D34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18C0CC9F-9B33-48F2-BC18-CC2C4733D34D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E3290D3-B379-4BD9-A453-9BD50CB5FF43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E3290D3-B379-4BD9-A453-9BD50CB5FF43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E3290D3-B379-4BD9-A453-9BD50CB5FF43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E3290D3-B379-4BD9-A453-9BD50CB5FF43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4824CAC2-AD69-4702-82DA-54018235D5EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4824CAC2-AD69-4702-82DA-54018235D5EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4824CAC2-AD69-4702-82DA-54018235D5EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4824CAC2-AD69-4702-82DA-54018235D5EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
