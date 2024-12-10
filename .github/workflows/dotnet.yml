@@ -25,10 +25,10 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput='./results/'
+      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
 
     - name: Publish Coverage   
       uses: coverallsapp/github-action@v2.3.4   
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        file: './results/'
+        file: MissionEngineering.ScenarioGenerator.Tests/results/coverage.info
