@@ -23,14 +23,16 @@ public sealed class FlightpathTests
             FlightpathSettings = flightpathSettings
         };
 
-        var fileName = @"C:\Temp\MissionEngineeringToolbox\FlightpathData_Test_1.csv";
+        var expectedListLength = 901;
+
+        //var fileName = @"C:\Temp\MissionEngineeringToolbox\FlightpathData_Test_1.csv";
 
         // Act:
         flightpath.Run();
 
-        flightpath.FlightpathDataList.WriteToCsvFile(fileName);
+        //flightpath.FlightpathDataList.WriteToCsvFile(fileName);
 
         // Assert:
-        Assert.Inconclusive();
+        Assert.AreEqual(expectedListLength, flightpath.FlightpathDataList.Count);
     }
 }
