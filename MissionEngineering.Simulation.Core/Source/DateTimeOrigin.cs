@@ -4,8 +4,7 @@ public class DateTimeOrigin : IDateTimeOrigin
 {
     public DateTime DateTime { get; set; }
 
-    public DateTimeOrigin(DateTime dateTime)
+    public DateTimeOrigin()
     {
-        DateTime = dateTime;
     }
 }

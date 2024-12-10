@@ -2,7 +2,7 @@
 
 public record TimeStamp
 {
-    public DateTime DateTimeUTC { get; init; }
+    public DateTime DateTime { get; init; }
 
     public double Time { get; init; }
 
@@ -10,9 +10,9 @@ public record TimeStamp
     {
     }
 
-    public TimeStamp(double time, DateTime dateTimeUTC)
+    public TimeStamp(double time, DateTime dateTime)
     {
         Time = time;
-        DateTimeUTC = dateTimeUTC;
+        DateTime = dateTime;
     }
 }

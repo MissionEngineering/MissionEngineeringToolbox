@@ -7,7 +7,7 @@ using MissionEngineering.MathLibrary;
 
 namespace MissionEngineering.ScenarioGenerator;
 
-public class FlightpathAutopilot : IFlightpathAccelerationGenerator
+public class FlightpathAutopilot
 {
     public FlightpathDemand FlightpathDemand { get; set; }
 

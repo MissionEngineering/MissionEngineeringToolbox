@@ -11,42 +11,26 @@ public class Flightpath
 
     public List<FlightpathData> FlightpathDataList { get; set; }
 
-    public IFlightpathAccelerationGenerator FlightpathAccelerationGenerator { get; set; }
+    public FlightpathAutopilot FlightpathAutopilot { get; set; }
 
     public ISimulationClock SimulationClock { get; set; }
 
     public ILLAOrigin LLAOrigin { get; set; }
 
-    public Flightpath(IFlightpathAccelerationGenerator flightpathAccelerationGenerator, ISimulationClock simulationClock, ILLAOrigin llaOrigin)
+    public Flightpath(ISimulationClock simulationClock, ILLAOrigin llaOrigin)
     {
-        FlightpathAccelerationGenerator = flightpathAccelerationGenerator;
         SimulationClock = simulationClock;
         LLAOrigin = llaOrigin;
 
-        FlightpathSettings = new FlightpathSettings();
         FlightpathData = new FlightpathData();
         FlightpathDataList = new List<FlightpathData>();
-    }
-
-    public void Run()
-    {
-        var time = FlightpathSettings.TimeStart;
-
-        Initialise(time);
-
-        while (time <= FlightpathSettings.TimeEnd)
-        {
-            Update(time);
-
-            time += FlightpathSettings.TimeStep;
-        }
-
-        Finalise(time);
     }
 
     public void Initialise(double time)
     {
         var timeStamp = SimulationClock.GetTimeStamp(time);
+
+        FlightpathAutopilot = new FlightpathAutopilot();
 
         FlightpathData = new FlightpathData()
         {
@@ -64,7 +48,7 @@ public class Flightpath
 
         var deltaTime = new DeltaTime(dt);
 
-        var accelerationTBA = FlightpathAccelerationGenerator.GetAccelerationTBA(time);
+        var accelerationTBA = FlightpathAutopilot.GetAccelerationTBA(time);
         var accelerationNED = new AccelerationNED();
 
         var velocityNED = FlightpathData.VelocityNED + FlightpathData.AccelerationNED * deltaTime;

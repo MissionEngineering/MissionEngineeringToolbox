@@ -4,7 +4,7 @@ using CsvHelper.TypeConversion;
 
 namespace MissionEngineering.Core.Source;
 
-public static class CsvExtensions
+public static class CsvUtilities
 {
     public static void WriteToCsvFile<T>(this IEnumerable<T> records, string fileName)
     {
