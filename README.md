@@ -21,6 +21,6 @@ https://github.com/users/MissionEngineering/projects/1
 <!-- [START BADGES] -->
 
 [![.NET](https://github.com/MissionEngineering/MissionEngineeringToolbox/actions/workflows/dotnet.yml/badge.svg)](https://github.com/MissionEngineering/MissionEngineeringToolbox/actions/workflows/dotnet.yml)
-[![Coverage Status](https://coveralls.io/repos/github/MissionEngineering/MissionEngineeringToolbox/badge.svg?branch=main)](https://coveralls.io/github/MissionEngineering/MissionEngineeringToolbox?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/MissionEngineering/MissionEngineeringToolbox/badge.png?branch=main)](https://coveralls.io/github/MissionEngineering/MissionEngineeringToolbox?branch=main)
 
 <!-- [END BADGES] -->
