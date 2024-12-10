@@ -31,4 +31,4 @@ jobs:
       uses: coverallsapp/github-action@v2.3.4   
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        file: MissionEngineeringToolbox/MissionEngineering.ScenarioGenerator.Tests/coverage.info
+        file: '/home/runner/work/MissionEngineeringToolbox/MissionEngineeringToolbox/MissionEngineering.ScenarioGenerator.Tests/coverage.info'
