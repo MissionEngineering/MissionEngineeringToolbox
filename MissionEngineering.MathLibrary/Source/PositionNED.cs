@@ -98,10 +98,10 @@ public record PositionNED
         return result;
     }
 
-    public PositionLLA ToPositionLLA(PositionLLA llaOrigin)
+    public PositionLLA ToPositionLLA(PositionLLA positionLLAOrigin)
     {
-        var result = new PositionLLA();
+        var positionLLA = MappingConversions.ConvertPositionNEDToPositionLLA(this, positionLLAOrigin);
 
-        return result;
+        return positionLLA;
     }
 }

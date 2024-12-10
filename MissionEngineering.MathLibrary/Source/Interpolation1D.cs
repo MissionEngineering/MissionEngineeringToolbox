@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using CommunityToolkit.Diagnostics;
+﻿using CommunityToolkit.Diagnostics;
 
 namespace MissionEngineering.MathLibrary;
 
@@ -15,7 +8,7 @@ public class Interpolation1D
 
     public double[] Y { get; init; }
 
-    public double XStart {  get; init; }
+    public double XStart { get; init; }
 
     public double XEnd { get; init; }
 

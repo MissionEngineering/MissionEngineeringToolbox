@@ -1,4 +1,6 @@
-﻿namespace MissionEngineering.ScenarioGenerator;
+﻿using MissionEngineering.MathLibrary;
+
+namespace MissionEngineering.ScenarioGenerator;
 
 public record FlightpathSettings
 {
@@ -11,4 +13,8 @@ public record FlightpathSettings
     public double TimeEnd { get; init; }
 
     public double TimeStep { get; init; }
+
+    public PositionNED PositionNED { get; init; }
+
+    public VelocityNED VelocityNED { get; init; }
 }

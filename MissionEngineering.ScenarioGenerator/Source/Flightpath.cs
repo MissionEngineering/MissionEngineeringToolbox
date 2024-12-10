@@ -52,16 +52,14 @@ public class Flightpath
         {
             FlightpathId = FlightpathSettings.FlightpathId,
             FlightpathName = FlightpathSettings.FlightpathName,
-            TimeStamp = timeStamp
+            TimeStamp = timeStamp,
+            PositionNED = FlightpathSettings.PositionNED,
+            VelocityNED = FlightpathSettings.VelocityNED
         };
     }
 
     public void Update(double time)
     {
-        var timeStamp = SimulationClock.GetTimeStamp(time);
-
-        FlightpathData = FlightpathData with { TimeStamp = timeStamp };
-
         var dt = time - FlightpathData.TimeStamp.Time;
 
         var deltaTime = new DeltaTime(dt);
@@ -76,6 +74,8 @@ public class Flightpath
         var attitude = new Attitude();
         var attitudeRate = new AttitudeRate();
 
+        var timeStamp = SimulationClock.GetTimeStamp(time);
+
         FlightpathData = new FlightpathData()
         {
             FlightpathId = FlightpathSettings.FlightpathId,
@@ -84,10 +84,10 @@ public class Flightpath
             PositionLLA = positionLLA,
             PositionNED = positionNED,
             VelocityNED = velocityNED,
-             AccelerationNED = accelerationNED,
-              AccelerationTBA = accelerationTBA,
-               Attitude = attitude,
-               AttitudeRate = attitudeRate,
+            AccelerationNED = accelerationNED,
+            AccelerationTBA = accelerationTBA,
+            Attitude = attitude,
+            AttitudeRate = attitudeRate,
         };
 
         FlightpathDataList.Add(FlightpathData);

@@ -17,7 +17,9 @@ public sealed class FlightpathTests
             FlightpathName = "Flightpath_1",
             TimeStart = 10.0,
             TimeEnd = 100.0,
-            TimeStep = 0.1
+            TimeStep = 0.1,
+            PositionNED = new PositionNED(10000.0, 5000.0, -2000.0),
+            VelocityNED = new VelocityNED(-200.0, 100.0, -10.0)
         };
 
         var flightpathAccelerationGenerator = new FlightpathAutopilot();
@@ -45,12 +47,12 @@ public sealed class FlightpathTests
 
         var expectedListLength = 901;
 
-        //var fileName = @"C:\Temp\MissionEngineeringToolbox\FlightpathData_Test_1.csv";
+        var fileName = @"C:\Temp\MissionEngineeringToolbox\FlightpathData_Test_1.csv";
 
         // Act:
         flightpath.Run();
 
-        //flightpath.FlightpathDataList.WriteToCsvFile(fileName);
+        flightpath.FlightpathDataList.WriteToCsvFile(fileName);
 
         // Assert:
         Assert.AreEqual(expectedListLength, flightpath.FlightpathDataList.Count);
