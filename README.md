@@ -8,6 +8,10 @@ Using the US Department of Defense, Mission Engineering Guide as reference.
 
 https://ac.cto.mil/wp-content/uploads/2023/11/MEG_2_Oct2023.pdf
 
+<!-- [START BADGES] -->
+
 [![.NET](https://github.com/MissionEngineering/MissionEngineeringToolbox/actions/workflows/dotnet.yml/badge.svg)](https://github.com/MissionEngineering/MissionEngineeringToolbox/actions/workflows/dotnet.yml)
 
 [![Coverage Status](https://coveralls.io/repos/github/MissionEngineering/MissionEngineeringToolbox/badge.svg?branch=main)](https://coveralls.io/github/MissionEngineering/MissionEngineeringToolbox?branch=main)
+
+<!-- [END BADGES] -->
