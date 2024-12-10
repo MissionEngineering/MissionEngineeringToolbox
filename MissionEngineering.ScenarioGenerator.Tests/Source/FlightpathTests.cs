@@ -45,12 +45,12 @@ public sealed class FlightpathTests
 
         var expectedListLength = 901;
 
-        var fileName = @"C:\Temp\MissionEngineeringToolbox\FlightpathData_Test_1.csv";
+        //var fileName = @"C:\Temp\MissionEngineeringToolbox\FlightpathData_Test_1.csv";
 
         // Act:
         flightpath.Run();
 
-        flightpath.FlightpathDataList.WriteToCsvFile(fileName);
+        //flightpath.FlightpathDataList.WriteToCsvFile(fileName);
 
         // Assert:
         Assert.AreEqual(expectedListLength, flightpath.FlightpathDataList.Count);
