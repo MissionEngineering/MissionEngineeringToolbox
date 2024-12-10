@@ -15,15 +15,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
     - uses: actions/checkout@v4
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
+        
     - name: Restore
       run: dotnet restore
+      
     - name: Build
       run: dotnet build --no-restore
+      
     - name: Test
       run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov
 
@@ -31,4 +36,6 @@ jobs:
       uses: coverallsapp/github-action@v2.3.4   
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        file: '/home/runner/work/MissionEngineeringToolbox/MissionEngineeringToolbox/MissionEngineering.ScenarioGenerator.Tests/coverage.info'
+        files: /home/runner/work/MissionEngineeringToolbox/MissionEngineeringToolbox/MissionEngineering.Core.Tests/coverage.info
+               /home/runner/work/MissionEngineeringToolbox/MissionEngineeringToolbox/MissionEngineering.MathLibrary.Tests/coverage.info
+               /home/runner/work/MissionEngineeringToolbox/MissionEngineeringToolbox/MissionEngineering.ScenarioGenerator.Tests/coverage.info
