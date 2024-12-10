@@ -8,6 +8,10 @@ public record VelocityNED
 
     public double VelocityDown { get; init; }
 
+    public VelocityNED()
+    {
+    }
+
     public VelocityNED(double velocityNorth, double velocityEast, double velocityDown)
     {
         VelocityNorth = velocityNorth;
@@ -66,6 +70,19 @@ public record VelocityNED
         var velocityDown = left * right.VelocityDown;
 
         var result = new VelocityNED(velocityNorth, velocityEast, velocityDown);
+
+        return result;
+    }
+
+    public static PositionNED operator *(VelocityNED left, DeltaTime right)
+    {
+        var time = right.Time;
+        
+        var velocityNorth = left.VelocityNorth * time;
+        var velocityEast = left.VelocityEast * time;
+        var velocityDown = left.VelocityDown * time;
+
+        var result = new PositionNED(velocityNorth, velocityEast, velocityDown);
 
         return result;
     }

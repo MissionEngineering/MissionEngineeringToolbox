@@ -2,13 +2,17 @@
 
 public record TimeStamp
 {
-    public double SimulationTime { get; init; }
+    public DateTime DateTimeUTC { get; init; }
 
-    public DateTime SimulationDateTime { get; init; }
+    public double Time { get; init; }
 
-    public TimeStamp()
+    public TimeStamp() : this(default, default)
     {
-        SimulationTime = 0;
-        SimulationDateTime = DateTime.Now;
+    }
+
+    public TimeStamp(double time, DateTime dateTimeUTC)
+    {
+        Time = time;
+        DateTimeUTC = dateTimeUTC;
     }
 }

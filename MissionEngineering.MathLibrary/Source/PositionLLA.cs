@@ -8,6 +8,10 @@ public record PositionLLA
 
     public double Altitude { get; init; }
 
+    public PositionLLA()
+    {
+    }
+
     public PositionLLA(double latitudeDeg, double longitudeDeg, double altitude)
     {
         LatitudeDeg = latitudeDeg;

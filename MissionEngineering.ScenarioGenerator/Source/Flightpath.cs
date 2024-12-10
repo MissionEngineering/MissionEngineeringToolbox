@@ -1,4 +1,7 @@
-﻿namespace MissionEngineering.ScenarioGenerator;
+﻿using MissionEngineering.MathLibrary;
+using MissionEngineering.Simulation.Core;
+
+namespace MissionEngineering.ScenarioGenerator;
 
 public class Flightpath
 {
@@ -8,8 +11,18 @@ public class Flightpath
 
     public List<FlightpathData> FlightpathDataList { get; set; }
 
-    public Flightpath()
+    public IFlightpathAccelerationGenerator FlightpathAccelerationGenerator { get; set; }
+
+    public ISimulationClock SimulationClock { get; set; }
+
+    public ILLAOrigin LLAOrigin { get; set; }
+
+    public Flightpath(IFlightpathAccelerationGenerator flightpathAccelerationGenerator, ISimulationClock simulationClock, ILLAOrigin llaOrigin)
     {
+        FlightpathAccelerationGenerator = flightpathAccelerationGenerator;
+        SimulationClock = simulationClock;
+        LLAOrigin = llaOrigin;
+
         FlightpathSettings = new FlightpathSettings();
         FlightpathData = new FlightpathData();
         FlightpathDataList = new List<FlightpathData>();
@@ -33,17 +46,49 @@ public class Flightpath
 
     public void Initialise(double time)
     {
+        var timeStamp = SimulationClock.GetTimeStamp(time);
+
         FlightpathData = new FlightpathData()
         {
             FlightpathId = FlightpathSettings.FlightpathId,
             FlightpathName = FlightpathSettings.FlightpathName,
-            TimeStamp = new Simulation.TimeStamp() { SimulationTime = time }
+            TimeStamp = timeStamp
         };
     }
 
     public void Update(double time)
     {
-        FlightpathData = FlightpathData with { TimeStamp = new Simulation.TimeStamp() { SimulationTime = time } };
+        var timeStamp = SimulationClock.GetTimeStamp(time);
+
+        FlightpathData = FlightpathData with { TimeStamp = timeStamp };
+
+        var dt = time - FlightpathData.TimeStamp.Time;
+
+        var deltaTime = new DeltaTime(dt);
+
+        var accelerationTBA = FlightpathAccelerationGenerator.GetAccelerationTBA(time);
+        var accelerationNED = new AccelerationNED();
+
+        var velocityNED = FlightpathData.VelocityNED + FlightpathData.AccelerationNED * deltaTime;
+        var positionNED = FlightpathData.PositionNED + FlightpathData.VelocityNED * deltaTime;
+        var positionLLA = positionNED.ToPositionLLA(LLAOrigin.PositionLLA);
+
+        var attitude = new Attitude();
+        var attitudeRate = new AttitudeRate();
+
+        FlightpathData = new FlightpathData()
+        {
+            FlightpathId = FlightpathSettings.FlightpathId,
+            FlightpathName = FlightpathSettings.FlightpathName,
+            TimeStamp = timeStamp,
+            PositionLLA = positionLLA,
+            PositionNED = positionNED,
+            VelocityNED = velocityNED,
+             AccelerationNED = accelerationNED,
+              AccelerationTBA = accelerationTBA,
+               Attitude = attitude,
+               AttitudeRate = attitudeRate,
+        };
 
         FlightpathDataList.Add(FlightpathData);
     }

@@ -1,4 +1,6 @@
-﻿namespace MissionEngineering.MathLibrary;
+﻿using System.Net.Http.Headers;
+
+namespace MissionEngineering.MathLibrary;
 
 public record PositionNED
 {
@@ -7,6 +9,10 @@ public record PositionNED
     public double PositionEast { get; init; }
 
     public double PositionDown { get; init; }
+
+    public PositionNED()
+    {
+    }
 
     public PositionNED(double positionNorth, double positionEast, double positionDown)
     {
@@ -88,6 +94,13 @@ public record PositionNED
         var positionDown = left / right.PositionDown;
 
         var result = new PositionNED(positionNorth, positionEast, positionDown);
+
+        return result;
+    }
+
+    public PositionLLA ToPositionLLA(PositionLLA llaOrigin)
+    {
+        var result = new PositionLLA();
 
         return result;
     }

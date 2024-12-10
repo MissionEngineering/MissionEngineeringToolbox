@@ -8,6 +8,10 @@ public record AccelerationTBA
 
     public double AccelerationVertical { get; init; }
 
+    public AccelerationTBA()
+    {
+    }
+
     public AccelerationTBA(double accelerationAxial, double accelerationLateral, double accelerationVertical)
     {
         AccelerationAxial = accelerationAxial;

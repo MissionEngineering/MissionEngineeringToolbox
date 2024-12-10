@@ -8,6 +8,10 @@ public record Attitude
 
     public double BankAngleDeg { get; init; }
 
+    public Attitude()
+    {
+    }
+
     public Attitude(double headingAngleDeg, double pitchAngleDeg, double bankAngleDeg)
     {
         HeadingAngleDeg = headingAngleDeg;

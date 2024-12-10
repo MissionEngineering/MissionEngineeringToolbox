@@ -8,6 +8,10 @@ public record AttitudeRate
 
     public double BankRateDeg { get; init; }
 
+    public AttitudeRate()
+    {
+    }
+
     public AttitudeRate(double headingRateDeg, double pitchRateDeg, double bankRateDeg)
     {
         HeadingRateDeg = headingRateDeg;
