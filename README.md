@@ -7,3 +7,5 @@ Including simulation models to support mission, task and system level use case a
 Using the US Department of Defense, Mission Engineering Guide as reference.
 
 https://ac.cto.mil/wp-content/uploads/2023/11/MEG_2_Oct2023.pdf
+
+[![.NET](https://github.com/MissionEngineering/MissionEngineeringToolbox/actions/workflows/dotnet.yml/badge.svg)](https://github.com/MissionEngineering/MissionEngineeringToolbox/actions/workflows/dotnet.yml)
