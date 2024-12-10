@@ -17,10 +17,10 @@ public class Program
     public static IScenarioGenerator ScenarioGenerator {  get; set; }
 
     /// <summary>
-    /// Scenario Settings File Name.
+    /// Scenario Generator.
     /// </summary>
-    /// <param name="scenarioSettingsFileName"></param>
-    /// <param name="outputPath"></param>
+    /// <param name="scenarioSettingsFileName">Scenario Settings File Name</param>
+    /// <param name="outputPath">Output Path</param>
     public static void Main(string scenarioSettingsFileName = "", string outputPath = @"c:\temp\MissionEngineeringToolbox")
     {
         ScenarioSettingsFileName = scenarioSettingsFileName;
