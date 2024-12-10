@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MissionEngineering.Core;
 using MissionEngineering.MathLibrary;
 using MissionEngineering.Simulation.Core;
 
@@ -49,5 +50,11 @@ public class Program
     private static void WriteData()
     {
         ScenarioGenerator.WriteToCsv(OutputPath);
+
+        var jsonFileName = "ScenarioSettingsFileName" + ".json";
+
+        var fileName = Path.Combine(OutputPath, jsonFileName);
+
+        ScenarioSettings.WriteToJsonFile(fileName);
     }
 }

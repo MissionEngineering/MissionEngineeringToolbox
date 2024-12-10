@@ -2,7 +2,7 @@
 using CsvHelper;
 using CsvHelper.TypeConversion;
 
-namespace MissionEngineering.Core.Source;
+namespace MissionEngineering.Core;
 
 public static class CsvUtilities
 {
