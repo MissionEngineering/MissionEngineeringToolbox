@@ -13,10 +13,28 @@ public static class JsonUtilities
         return jsonString;
     }
 
+    public static T ConvertFromJsonString<T>(string jsonString)
+    {
+        var options = new JsonSerializerOptions { WriteIndented = true };
+
+        T obj = JsonSerializer.Deserialize<T>(jsonString, options);
+
+        return obj;
+    }
+
     public static void WriteToJsonFile<T>(this T obj, string fileName)
     {
         string jsonString = obj.ConvertToJsonString();
 
         File.WriteAllText(fileName, jsonString);
+    }
+
+    public static T ReadFromJsonFile<T>(string fileName)
+    {
+        var jsonString = File.ReadAllText(fileName);
+
+        T obj = ConvertFromJsonString<T>(jsonString);
+
+        return obj;
     }
 }

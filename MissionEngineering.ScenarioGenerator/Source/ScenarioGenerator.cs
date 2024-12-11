@@ -1,4 +1,6 @@
-﻿using MissionEngineering.Core;
+﻿using System.Collections.Generic;
+using System.IO;
+using MissionEngineering.Core;
 using MissionEngineering.MathLibrary;
 using MissionEngineering.Simulation.Core;
 
@@ -60,6 +62,21 @@ public class ScenarioGenerator : IScenarioGenerator
         Scenario.Finalise(time);
     }
 
+    public List<FlightpathData> GetFlightpathDataAll()
+    {
+        var flightpathDataAll = new List<FlightpathData>();
+
+        foreach (var flightpath in Scenario.FlightpathList)
+        {
+            flightpathDataAll.AddRange(flightpath.FlightpathDataList);
+        }
+
+        flightpathDataAll = flightpathDataAll.OrderBy(s => s.TimeStamp.Time).ThenBy(s => s.FlightpathId).ToList();
+
+        return flightpathDataAll;
+    }
+
+
     public void WriteToCsv(string path)
     {
         foreach (var flightpath in Scenario.FlightpathList)
@@ -70,5 +87,11 @@ public class ScenarioGenerator : IScenarioGenerator
 
             flightpath.FlightpathDataList.WriteToCsvFile(fileNameFull);
         }
+
+        var flightpathDataAll = GetFlightpathDataAll();
+        var fileNameAll = $"{Scenario.ScenarioSettings.ScenarioName}_FlightpathsAll.csv";
+        var fileNameAllFull = Path.Combine(path, fileNameAll);
+
+        flightpathDataAll.WriteToCsvFile(fileNameAllFull);
     }
 }

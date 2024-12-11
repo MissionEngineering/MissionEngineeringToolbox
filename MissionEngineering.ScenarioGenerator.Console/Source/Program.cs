@@ -40,7 +40,13 @@ public class Program
 
     private static void GenerateScenarioSettings()
     {
-        ScenarioSettings = ScenarioSettingsFactory.ScenarioSettings_Test_1();
+        if (string.IsNullOrEmpty(ScenarioSettingsFileName))
+        {
+            ScenarioSettings = ScenarioSettingsFactory.ScenarioSettings_Test_1();
+            return;
+        }
+
+        ScenarioSettings = JsonUtilities.ReadFromJsonFile<ScenarioSettings>(ScenarioSettingsFileName);
     }
 
     private static void WriteData()
@@ -51,6 +57,9 @@ public class Program
 
         var fileName = Path.Combine(OutputPath, jsonFileName);
 
-        ScenarioSettings.WriteToJsonFile(fileName);
+        if (string.IsNullOrEmpty(ScenarioSettingsFileName))
+        {
+            ScenarioSettings.WriteToJsonFile(fileName);
+        }
     }
 }
