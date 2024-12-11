@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using MissionEngineering.Core;
-using MissionEngineering.MathLibrary;
-using MissionEngineering.Simulation.Core;
+﻿using MissionEngineering.Core;
 
 namespace MissionEngineering.ScenarioGenerator;
 
@@ -14,7 +10,7 @@ public class Program
 
     public static ScenarioSettings ScenarioSettings { get; set; }
 
-    public static IScenarioGenerator ScenarioGenerator {  get; set; }
+    public static IScenarioGenerator ScenarioGenerator { get; set; }
 
     /// <summary>
     /// Scenario Generator.
@@ -25,7 +21,7 @@ public class Program
     {
         ScenarioSettingsFileName = scenarioSettingsFileName;
         OutputPath = outputPath;
-        
+
         Run();
 
         WriteData();

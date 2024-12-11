@@ -77,7 +77,7 @@ public record VelocityNED
     public static PositionNED operator *(VelocityNED left, DeltaTime right)
     {
         var time = right.Time;
-        
+
         var velocityNorth = left.VelocityNorth * time;
         var velocityEast = left.VelocityEast * time;
         var velocityDown = left.VelocityDown * time;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MissionEngineering.MathLibrary.Tests;
+﻿namespace MissionEngineering.MathLibrary.Tests;
 
 [TestClass]
 public sealed class Interpolation1DTests

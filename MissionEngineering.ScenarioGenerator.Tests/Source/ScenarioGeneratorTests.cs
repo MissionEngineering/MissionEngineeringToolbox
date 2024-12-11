@@ -1,8 +1,4 @@
-﻿using MissionEngineering.Core;
-using MissionEngineering.MathLibrary;
-using MissionEngineering.Simulation.Core;
-
-namespace MissionEngineering.ScenarioGenerator.Tests;
+﻿namespace MissionEngineering.ScenarioGenerator.Tests;
 
 [TestClass]
 public sealed class ScenarioGeneratorTests
@@ -18,7 +14,7 @@ public sealed class ScenarioGeneratorTests
         scenarioGenerator.ScenarioSettings = scenarioSettings;
 
         var expectedListLength = 901;
-        
+
         // Act:
         scenarioGenerator.Run();
 

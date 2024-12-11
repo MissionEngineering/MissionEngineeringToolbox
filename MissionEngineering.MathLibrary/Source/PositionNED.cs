@@ -1,6 +1,4 @@
-﻿using System.Net.Http.Headers;
-
-namespace MissionEngineering.MathLibrary;
+﻿namespace MissionEngineering.MathLibrary;
 
 public record PositionNED
 {

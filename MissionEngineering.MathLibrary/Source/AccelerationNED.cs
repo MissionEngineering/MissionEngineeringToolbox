@@ -87,7 +87,6 @@ public record AccelerationNED
         return result;
     }
 
-
     public static AccelerationNED operator /(AccelerationNED left, double right)
     {
         var accelerationNorth = left.AccelerationNorth / right;

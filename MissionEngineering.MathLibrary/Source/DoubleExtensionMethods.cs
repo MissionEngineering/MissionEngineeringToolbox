@@ -1,6 +1,6 @@
-﻿using static MissionEngineering.MathLibrary.PhysicalConstants;
+﻿using static System.Math;
+using static MissionEngineering.MathLibrary.PhysicalConstants;
 using static MissionEngineering.MathLibrary.UnitConversions;
-using static System.Math;
 
 namespace MissionEngineering.MathLibrary;
 
