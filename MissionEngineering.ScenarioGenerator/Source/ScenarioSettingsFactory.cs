@@ -13,7 +13,7 @@ public static class ScenarioSettingsFactory
         {
             DateTimeOrigin = dateTimeOrigin,
             TimeStart = 10.0,
-            TimeEnd = 600.0,
+            TimeEnd = 100.0,
             TimeStep = 0.1
         };
 
