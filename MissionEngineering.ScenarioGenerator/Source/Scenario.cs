@@ -3,7 +3,7 @@ using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.ScenarioGenerator;
 
-public class Scenario : IScenario
+public class Scenario : IScenario, IExecutableModel
 {
     public ScenarioSettings ScenarioSettings { get; set; }
 
