@@ -12,7 +12,7 @@ public sealed class Interpolation1DTests
         var y = new double[1];
 
         // Act:
-        var interpolation = new Interpolation1D(x, y);
+        var interpolation = new Interpolation1DUniformlySpaced(x, y);
 
         // Assert:
         Assert.Fail();
@@ -27,7 +27,7 @@ public sealed class Interpolation1DTests
         var y = new double[4];
 
         // Act:
-        var interpolation = new Interpolation1D(x, y);
+        var interpolation = new Interpolation1DUniformlySpaced(x, y);
 
         // Assert:
         Assert.Fail();
@@ -41,9 +41,70 @@ public sealed class Interpolation1DTests
         var y = new double[4];
 
         // Act:
-        var interpolation = new Interpolation1D(x, y);
+        var interpolation = new Interpolation1DUniformlySpaced(x, y);
 
         // Assert:
         Assert.IsTrue(true);
     }
+
+    [TestMethod]
+    public void Interpolate_WithOneElement_ExpectSuccess()
+    {
+        // Arrange:
+        var x = new Vector(1.0);
+
+        var y = new Vector(11.0);
+
+        var i = new Interpolation1DUniformlySpaced(x, y);
+
+        var xi = 2.5;
+
+        // Act:
+        var yi = i.Interpolate(xi);
+
+        // Assert:
+        Assert.AreEqual(11.0, yi, 1.0e-6);
+    }
+
+    [TestMethod]
+    public void Interpolate_WithSingleValue_ExpectSuccess()
+    {
+        // Arrange:
+        var x = new Vector(1.0, 2.0, 3.0);
+
+        var y = new Vector(11.0, 12.0, 22.0);
+
+        var i = new Interpolation1DUniformlySpaced(x, y);
+
+        var xi = 2.5;
+
+        // Act:
+        var yi = i.Interpolate(xi);
+
+        // Assert:
+        Assert.AreEqual(17.0, yi, 1.0e-6);
+    }
+
+    [TestMethod]
+    public void Interpolate_WithMultipleValues_ExpectSuccess()
+    {
+        // Arrange:
+        var x = new Vector(1.0, 2.0, 3.0);
+
+        var y = new Vector(11.0, 12.0, 22.0);
+
+        var i = new Interpolation1DUniformlySpaced(x, y);
+
+        var xi = new Vector(-0.5, 1.0, 1.5, 2.0, 2.75, 3.0, 3.5);
+        var yiExpected = new Vector(11.0, 11.0, 11.5, 12.0, 19.5, 22.0, 22.0);
+
+        // Act:
+        var yi = i.Interpolate(xi);
+
+        var isEqual = yi.Equals(yiExpected, 1.0e-6);
+
+        // Assert:
+        Assert.IsTrue(isEqual);
+    }
+
 }
