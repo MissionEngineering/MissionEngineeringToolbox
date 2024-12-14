@@ -2,7 +2,7 @@
 
 namespace MissionEngineering.Scanner.Source;
 
-public class ScanStateInitialiseCommand : IModelCommand
+public class InitialiseScanStateCommand : IModelCommand
 {
     public ScanStateData ScanStateData { get; set; }
 }

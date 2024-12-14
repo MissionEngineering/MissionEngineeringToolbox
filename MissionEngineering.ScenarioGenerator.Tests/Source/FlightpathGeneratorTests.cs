@@ -45,9 +45,9 @@ public sealed class FlightpathGeneratorTests
         // Act:
         flightpathGenerator.Run();
 
-        flightpathGenerator.Flightpath.FlightpathDataList.WriteToCsvFile(fileName);
+        flightpathGenerator.Flightpath.FlightpathStateDataList.WriteToCsvFile(fileName);
 
         // Assert:
-        Assert.AreEqual(expectedListLength, flightpathGenerator.Flightpath.FlightpathDataList.Count);
+        Assert.AreEqual(expectedListLength, flightpathGenerator.Flightpath.FlightpathStateDataList.Count);
     }
 }

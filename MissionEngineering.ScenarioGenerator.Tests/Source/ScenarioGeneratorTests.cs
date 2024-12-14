@@ -21,6 +21,6 @@ public sealed class ScenarioGeneratorTests
         var fp2 = scenarioGenerator.Scenario.FlightpathList[1];
 
         // Assert:
-        Assert.AreEqual(expectedListLength, fp2.FlightpathDataList.Count);
+        Assert.AreEqual(expectedListLength, fp2.FlightpathStateDataList.Count);
     }
 }

@@ -1,12 +1,15 @@
-﻿using MissionEngineering.Simulation.Core;
+﻿using MissionEngineering.Simulation;
+using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.Scanner;
 
-public record ScanStateData : IModelState
+public record ScanStateData
 {
     public int ScannerId { get; set; }
 
-    public string ScannerNameId { get; set; }
+    public string ScannerName { get; set; }
+
+    public TimeStamp TimeStamp { get; init; }
 
     public int ScanPatternModificationId { get; set; }
 

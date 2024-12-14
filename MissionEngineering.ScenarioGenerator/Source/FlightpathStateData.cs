@@ -4,7 +4,7 @@ using MissionEngineering.Simulation;
 
 namespace MissionEngineering.ScenarioGenerator;
 
-public record FlightpathData
+public record FlightpathStateData
 {
     public required int FlightpathId { get; init; }
 
@@ -27,7 +27,7 @@ public record FlightpathData
     public required AttitudeRate AttitudeRate { get; init; }
 
     [SetsRequiredMembers]
-    public FlightpathData()
+    public FlightpathStateData()
     {
         FlightpathId = 0;
         FlightpathName = "";

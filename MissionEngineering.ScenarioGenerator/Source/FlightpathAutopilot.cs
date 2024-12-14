@@ -6,12 +6,12 @@ public class FlightpathAutopilot
 {
     public FlightpathDemand FlightpathDemand { get; set; }
 
-    public FlightpathData FlightpathData { get; set; }
+    public FlightpathStateData FlightpathData { get; set; }
 
     public FlightpathAutopilot()
     {
         FlightpathDemand = new FlightpathDemand();
-        FlightpathData = new FlightpathData();
+        FlightpathData = new FlightpathStateData();
     }
 
     public AccelerationTBA GetAccelerationTBA(double time)

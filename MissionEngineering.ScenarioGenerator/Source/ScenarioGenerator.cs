@@ -62,18 +62,18 @@ public class ScenarioGenerator : IScenarioGenerator
         Scenario.Finalise(time);
     }
 
-    public List<FlightpathData> GetFlightpathDataAll()
+    public List<FlightpathStateData> GetFlightpathStateDataAll()
     {
-        var flightpathDataAll = new List<FlightpathData>();
+        var flightpathStateDataAll = new List<FlightpathStateData>();
 
         foreach (var flightpath in Scenario.FlightpathList)
         {
-            flightpathDataAll.AddRange(flightpath.FlightpathDataList);
+            flightpathStateDataAll.AddRange(flightpath.FlightpathStateDataList);
         }
 
-        flightpathDataAll = flightpathDataAll.OrderBy(s => s.TimeStamp.Time).ThenBy(s => s.FlightpathId).ToList();
+        flightpathStateDataAll = flightpathStateDataAll.OrderBy(s => s.TimeStamp.Time).ThenBy(s => s.FlightpathId).ToList();
 
-        return flightpathDataAll;
+        return flightpathStateDataAll;
     }
 
 
@@ -85,10 +85,10 @@ public class ScenarioGenerator : IScenarioGenerator
 
             var fileNameFull = Path.Combine(path, fileName);
 
-            flightpath.FlightpathDataList.WriteToCsvFile(fileNameFull);
+            flightpath.FlightpathStateDataList.WriteToCsvFile(fileNameFull);
         }
 
-        var flightpathDataAll = GetFlightpathDataAll();
+        var flightpathDataAll = GetFlightpathStateDataAll();
         var fileNameAll = $"{Scenario.ScenarioSettings.ScenarioName}_FlightpathsAll.csv";
         var fileNameAllFull = Path.Combine(path, fileNameAll);
 

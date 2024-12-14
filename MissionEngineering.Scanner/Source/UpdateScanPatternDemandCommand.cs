@@ -2,7 +2,7 @@
 
 namespace MissionEngineering.Scanner.Source;
 
-public class ScanPatternDemandUpdateCommand : IModelCommand
+public class UpdateScanPatternDemandCommand : IModelCommand
 {
     public ScanPatternDemand ScanPatternDemand { get; set; }
 }
