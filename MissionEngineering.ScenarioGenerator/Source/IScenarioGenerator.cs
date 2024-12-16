@@ -1,4 +1,5 @@
 ﻿using MissionEngineering.MathLibrary;
+using MissionEngineering.Scenario;
 using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.ScenarioGenerator
@@ -20,7 +21,5 @@ namespace MissionEngineering.ScenarioGenerator
         void Update(double time);
 
         void Finalise(double time);
-
-        void WriteToCsv(string path);
     }
 }

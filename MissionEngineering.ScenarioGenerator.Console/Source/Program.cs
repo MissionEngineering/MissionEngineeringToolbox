@@ -1,4 +1,5 @@
 ﻿using MissionEngineering.Core;
+using MissionEngineering.Scenario;
 
 namespace MissionEngineering.ScenarioGenerator;
 
@@ -23,8 +24,6 @@ public class Program
         OutputPath = outputPath;
 
         Run();
-
-        WriteData();
     }
 
     private static void Run()
@@ -47,19 +46,5 @@ public class Program
         }
 
         ScenarioSettings = JsonUtilities.ReadFromJsonFile<ScenarioSettings>(ScenarioSettingsFileName);
-    }
-
-    private static void WriteData()
-    {
-        ScenarioGenerator.WriteToCsv(OutputPath);
-
-        var jsonFileName = "ScenarioSettingsFileName" + ".json";
-
-        var fileName = Path.Combine(OutputPath, jsonFileName);
-
-        if (string.IsNullOrEmpty(ScenarioSettingsFileName))
-        {
-            ScenarioSettings.WriteToJsonFile(fileName);
-        }
     }
 }

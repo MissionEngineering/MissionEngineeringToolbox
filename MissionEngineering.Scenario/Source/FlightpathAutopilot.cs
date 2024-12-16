@@ -1,6 +1,6 @@
 ﻿using MissionEngineering.MathLibrary;
 
-namespace MissionEngineering.ScenarioGenerator;
+namespace MissionEngineering.Scenario;
 
 public class FlightpathAutopilot
 {

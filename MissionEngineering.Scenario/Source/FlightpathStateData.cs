@@ -2,7 +2,7 @@
 using MissionEngineering.MathLibrary;
 using MissionEngineering.Simulation;
 
-namespace MissionEngineering.ScenarioGenerator;
+namespace MissionEngineering.Scenario;
 
 public record FlightpathStateData
 {

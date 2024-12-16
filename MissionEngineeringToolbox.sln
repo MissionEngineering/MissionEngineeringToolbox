@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Scanner"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Scanner.Tests", "MissionEngineering.Scanner.Tests\MissionEngineering.Scanner.Tests.csproj", "{F38F1C58-1065-497F-BDEA-A21A7F543AA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.DataRecorder", "MissionEngineering.DataRecorder\MissionEngineering.DataRecorder.csproj", "{280E2154-6F0E-4882-B73F-FDD74E0464AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Scenario", "MissionEngineering.Scenario\MissionEngineering.Scenario.csproj", "{2E0D1FC6-1111-4278-AB34-052ABB00030A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{F38F1C58-1065-497F-BDEA-A21A7F543AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F38F1C58-1065-497F-BDEA-A21A7F543AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F38F1C58-1065-497F-BDEA-A21A7F543AA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280E2154-6F0E-4882-B73F-FDD74E0464AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{280E2154-6F0E-4882-B73F-FDD74E0464AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{280E2154-6F0E-4882-B73F-FDD74E0464AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{280E2154-6F0E-4882-B73F-FDD74E0464AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E0D1FC6-1111-4278-AB34-052ABB00030A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E0D1FC6-1111-4278-AB34-052ABB00030A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E0D1FC6-1111-4278-AB34-052ABB00030A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E0D1FC6-1111-4278-AB34-052ABB00030A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

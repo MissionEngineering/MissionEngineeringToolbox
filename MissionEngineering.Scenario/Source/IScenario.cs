@@ -1,4 +1,4 @@
-﻿namespace MissionEngineering.ScenarioGenerator;
+﻿namespace MissionEngineering.Scenario;
 
 public interface IScenario
 {

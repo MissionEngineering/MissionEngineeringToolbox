@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using MissionEngineering.Core;
+﻿using MissionEngineering.DataRecorder;
 using MissionEngineering.MathLibrary;
+using MissionEngineering.Scenario;
 using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.ScenarioGenerator;
@@ -16,11 +15,14 @@ public class ScenarioGenerator : IScenarioGenerator
 
     public IScenario Scenario { get; set; }
 
-    public ScenarioGenerator(IScenario scenario, ILLAOrigin llaOrigin, ISimulationClock simulationClock)
+    public IDataRecorder DataRecorder { get; set; }
+
+    public ScenarioGenerator(IScenario scenario, ILLAOrigin llaOrigin, ISimulationClock simulationClock, IDataRecorder dataRecorder)
     {
         Scenario = scenario;
         LLAOrigin = llaOrigin;
         SimulationClock = simulationClock;
+        DataRecorder = dataRecorder;
     }
 
     public void Run()
@@ -49,7 +51,11 @@ public class ScenarioGenerator : IScenarioGenerator
 
         Scenario.ScenarioSettings = ScenarioSettings;
 
+        DataRecorder.SimulationData.ScenarioSettings = ScenarioSettings;
+
         Scenario.Initialise(time);
+
+        DataRecorder.Initialise(time);
     }
 
     public void Update(double time)
@@ -60,38 +66,18 @@ public class ScenarioGenerator : IScenarioGenerator
     public void Finalise(double time)
     {
         Scenario.Finalise(time);
+
+        var flightpathDataAll = GenerateFlightpathDataAll();
+
+        DataRecorder.SimulationData.FlightpathStateDataAll = flightpathDataAll;
+
+        DataRecorder.Finalise(time);
     }
 
-    public List<FlightpathStateData> GetFlightpathStateDataAll()
+    public List<FlightpathStateData> GenerateFlightpathDataAll()
     {
-        var flightpathStateDataAll = new List<FlightpathStateData>();
+        var flightpathDataAll = Scenario.FlightpathList.SelectMany(x => x.FlightpathStateDataList).ToList();
 
-        foreach (var flightpath in Scenario.FlightpathList)
-        {
-            flightpathStateDataAll.AddRange(flightpath.FlightpathStateDataList);
-        }
-
-        flightpathStateDataAll = flightpathStateDataAll.OrderBy(s => s.TimeStamp.Time).ThenBy(s => s.FlightpathId).ToList();
-
-        return flightpathStateDataAll;
-    }
-
-
-    public void WriteToCsv(string path)
-    {
-        foreach (var flightpath in Scenario.FlightpathList)
-        {
-            var fileName = $"{Scenario.ScenarioSettings.ScenarioName}_{flightpath.FlightpathSettings.FlightpathName}.csv";
-
-            var fileNameFull = Path.Combine(path, fileName);
-
-            flightpath.FlightpathStateDataList.WriteToCsvFile(fileNameFull);
-        }
-
-        var flightpathDataAll = GetFlightpathStateDataAll();
-        var fileNameAll = $"{Scenario.ScenarioSettings.ScenarioName}_FlightpathsAll.csv";
-        var fileNameAllFull = Path.Combine(path, fileNameAll);
-
-        flightpathDataAll.WriteToCsvFile(fileNameAllFull);
+        return flightpathDataAll;
     }
 }

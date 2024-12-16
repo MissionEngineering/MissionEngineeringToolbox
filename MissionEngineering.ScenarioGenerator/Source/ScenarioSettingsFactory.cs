@@ -1,4 +1,5 @@
 ﻿using MissionEngineering.MathLibrary;
+using MissionEngineering.Scenario;
 using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.ScenarioGenerator;
