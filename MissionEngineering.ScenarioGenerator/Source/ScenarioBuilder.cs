@@ -2,6 +2,7 @@
 using MissionEngineering.DataRecorder;
 using MissionEngineering.MathLibrary;
 using MissionEngineering.Scenario;
+using MissionEngineering.SimdisLibrary;
 using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.ScenarioGenerator;
@@ -21,6 +22,7 @@ public static class ScenarioBuilder
         services.AddScoped<IDataRecorder, DataRecorder.DataRecorder>();
         services.AddScoped<SimulationSettings, SimulationSettings>();
         services.AddScoped<SimulationData, SimulationData>();
+        services.AddScoped<ISimdisExporter, SimdisExporter>();
 
         using var serviceProvider = services.BuildServiceProvider();
 

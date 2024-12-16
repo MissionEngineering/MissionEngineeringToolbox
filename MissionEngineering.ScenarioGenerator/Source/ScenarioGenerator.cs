@@ -1,6 +1,7 @@
 ﻿using MissionEngineering.DataRecorder;
 using MissionEngineering.MathLibrary;
 using MissionEngineering.Scenario;
+using MissionEngineering.SimdisLibrary;
 using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.ScenarioGenerator;
@@ -17,12 +18,15 @@ public class ScenarioGenerator : IScenarioGenerator
 
     public IDataRecorder DataRecorder { get; set; }
 
-    public ScenarioGenerator(IScenario scenario, ILLAOrigin llaOrigin, ISimulationClock simulationClock, IDataRecorder dataRecorder)
+    public ISimdisExporter SimdisExporter { get; set; }
+
+    public ScenarioGenerator(IScenario scenario, ILLAOrigin llaOrigin, ISimulationClock simulationClock, IDataRecorder dataRecorder, ISimdisExporter simdisExporter)
     {
         Scenario = scenario;
         LLAOrigin = llaOrigin;
         SimulationClock = simulationClock;
         DataRecorder = dataRecorder;
+        SimdisExporter = simdisExporter;
     }
 
     public void Run()
@@ -72,6 +76,9 @@ public class ScenarioGenerator : IScenarioGenerator
         DataRecorder.SimulationData.FlightpathStateDataAll = flightpathDataAll;
 
         DataRecorder.Finalise(time);
+
+        SimdisExporter.GenerateSimdisData();
+        SimdisExporter.WriteSimdisData();
     }
 
     public List<FlightpathStateData> GenerateFlightpathDataAll()

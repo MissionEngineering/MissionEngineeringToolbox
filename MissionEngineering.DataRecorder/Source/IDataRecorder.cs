@@ -14,4 +14,6 @@ public interface IDataRecorder
     void Initialise(double time);
 
     void Finalise(double time);
+
+    string GetFileNameFull(string fileName);
 }
