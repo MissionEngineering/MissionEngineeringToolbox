@@ -40,12 +40,8 @@ public sealed class FlightpathGeneratorTests
 
         var expectedListLength = 901;
 
-        var fileName = @"C:\Temp\MissionEngineeringToolbox\FlightpathData_Test_1.csv";
-
         // Act:
         flightpathGenerator.Run();
-
-        flightpathGenerator.Flightpath.FlightpathStateDataList.WriteToCsvFile(fileName);
 
         // Assert:
         Assert.AreEqual(expectedListLength, flightpathGenerator.Flightpath.FlightpathStateDataList.Count);
