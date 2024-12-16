@@ -13,6 +13,8 @@ public sealed class ScenarioGeneratorTests
 
         scenarioGenerator.ScenarioSettings = scenarioSettings;
 
+        scenarioGenerator.DataRecorder.SimulationData.SimulationSettings.IsWriteData = false;
+
         var expectedListLength = 901;
 
         // Act:

@@ -52,6 +52,11 @@ public class DataRecorder : IDataRecorder
 
     public void WriteJsonData()
     {
+        if (!SimulationData.SimulationSettings.IsWriteData)
+        {
+            return;
+        }
+
         WriteSimulationSettingsToJson();
         WriteScenarioSettingsToJson();
     }
@@ -76,6 +81,11 @@ public class DataRecorder : IDataRecorder
 
     public void WriteCsvData()
     {
+        if (!SimulationData.SimulationSettings.IsWriteData)
+        {
+            return;
+        }
+
         WriteFlightpathDataAllToCsv();
         WriteFlightpathDataPerFlightpathToCsv();
     }

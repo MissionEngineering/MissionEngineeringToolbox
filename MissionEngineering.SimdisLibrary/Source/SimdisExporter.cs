@@ -30,6 +30,11 @@ public class SimdisExporter : ISimdisExporter
 
     public void WriteSimdisData()
     {
+        if (!DataRecorder.SimulationData.SimulationSettings.IsWriteData)
+        {
+            return;
+        }
+
         var fileName = $"{DataRecorder.SimulationData.SimulationSettings.SimulationName}.asi";
 
         var fileNameFull = DataRecorder.GetFileNameFull(fileName);

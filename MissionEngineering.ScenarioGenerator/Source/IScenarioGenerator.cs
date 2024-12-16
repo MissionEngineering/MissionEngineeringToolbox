@@ -1,5 +1,7 @@
-﻿using MissionEngineering.MathLibrary;
+﻿using MissionEngineering.DataRecorder;
+using MissionEngineering.MathLibrary;
 using MissionEngineering.Scenario;
+using MissionEngineering.SimdisLibrary;
 using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.ScenarioGenerator
@@ -13,6 +15,10 @@ namespace MissionEngineering.ScenarioGenerator
         ScenarioSettings ScenarioSettings { get; set; }
 
         ISimulationClock SimulationClock { get; set; }
+
+        public IDataRecorder DataRecorder { get; set; }
+
+        public ISimdisExporter SimdisExporter { get; set; }
 
         void Run();
 
