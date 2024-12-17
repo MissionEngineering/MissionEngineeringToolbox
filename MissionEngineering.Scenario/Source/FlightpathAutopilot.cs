@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using MissionEngineering.MathLibrary;
+﻿using MissionEngineering.MathLibrary;
 
 namespace MissionEngineering.Scenario;
 
@@ -7,7 +6,7 @@ public class FlightpathAutopilot
 {
     public FlightpathDemand FlightpathDemand { get; set; }
 
-    public FlightpathStateData FlightpathData { get; set; }
+    public FlightpathStateData FlightpathStateData { get; set; }
 
     public FlightpathDynamics FlightpathDynamics { get; set; }
 
@@ -16,138 +15,91 @@ public class FlightpathAutopilot
         FlightpathDynamics = flightpathDynamics;
 
         FlightpathDemand = new FlightpathDemand();
-        FlightpathData = new FlightpathStateData();
+        FlightpathStateData = new FlightpathStateData();
+    }
+
+    public void Initialise(double time)
+    {
+        FlightpathDemand.FlightpathId = FlightpathStateData.FlightpathId;
+        FlightpathDemand.Time = time;
+        FlightpathDemand.HeadingAngleDemandDeg = FlightpathStateData.Attitude.HeadingAngleDeg;
+        FlightpathDemand.SpeedDemand = FlightpathStateData.VelocityNED.TotalSpeed;
+        FlightpathDemand.AltitudeDemand = FlightpathStateData.PositionLLA.Altitude;
     }
 
     public AccelerationTBA GetAccelerationTBA(double time)
     {
-        var accelerationTBA = new AccelerationTBA();
+        var axialAcceleration = GetAxialAcceleration();
+        var lateralAcceleration = GetLateralAcceleration();
+        var (verticalAcceleration, pitchAngleDemandDeg) = GetVerticalAcceleration();
+
+        var accelerationTBA = new AccelerationTBA(axialAcceleration, lateralAcceleration, verticalAcceleration);
 
         return accelerationTBA;
     }
 
-    public bool SetFlightpathDemand(FlightpathDemand flightpathDemand)
+    public void SetFlightpathDemand(FlightpathDemand flightpathDemand)
     {
         FlightpathDemand = flightpathDemand;
+    }
 
-        var isAcceptDemand = true;
+    public double GetAxialAcceleration()
+    {
+        var axialAccelerationMax = FlightpathDynamics.AxialAccelerationMaximum;
 
-        return isAcceptDemand;
+        var speed = FlightpathStateData.VelocityNED.TotalSpeed;
+
+        var speedDemand = FlightpathDemand.SpeedDemand;
+
+        var speedError = speed - speedDemand;
+
+        var axialAcceleration = -speedError * FlightpathDynamics.AxialAccelerationGain;
+
+        axialAcceleration = MathFunctions.LimitWithinRange(-axialAccelerationMax, axialAccelerationMax, axialAcceleration);
+
+        return axialAcceleration;
+    }
+
+    public double GetLateralAcceleration()
+    {
+        var lateralAccelerationMax = FlightpathDynamics.LateralAccelerationMaximum;
+
+        var headingAngleDeg       = FlightpathStateData.Attitude.HeadingAngleDeg;
+        
+        var headingAngleDemandDeg = FlightpathDemand.HeadingAngleDemandDeg;
+
+        var headingAngleErrorDeg = MathFunctions.AzimuthDifferenceDeg(headingAngleDeg, headingAngleDemandDeg);
+
+        var lateralAcceleration = -headingAngleErrorDeg * FlightpathDynamics.LateralAccelerationGain;
+
+        lateralAcceleration = MathFunctions.LimitWithinRange(-lateralAccelerationMax, lateralAccelerationMax, lateralAcceleration);
+
+        return lateralAcceleration;
+    }
+
+    public (double verticalAcceleration, double pitchAngleDemandDeg) GetVerticalAcceleration()
+    {
+        var pitchAngleMaxDeg = FlightpathDynamics.PitchAngleMaximumDeg;
+        var verticalAccelerationMax = FlightpathDynamics.VerticalAccelerationMaximum;
+
+        var altitude       = FlightpathStateData.PositionLLA.Altitude;
+
+        var altitudeDemand = FlightpathDemand.AltitudeDemand;
+
+        var altitudeError = altitude - altitudeDemand;
+
+        var pitchAngleDemandDeg = -altitudeError * FlightpathDynamics.PitchAngleGain;
+
+        pitchAngleDemandDeg = MathFunctions.LimitWithinRange(-pitchAngleMaxDeg, pitchAngleMaxDeg, pitchAngleDemandDeg);
+
+        var pitchAngleDeg    = FlightpathStateData.Attitude.PitchAngleDeg;
+
+        var pitchAngleErorDeg = pitchAngleDeg - pitchAngleDemandDeg;
+
+        var verticalAcceleration = pitchAngleErorDeg * FlightpathDynamics.VerticalAccelerationGain;
+
+        verticalAcceleration = MathFunctions.LimitWithinRange(-verticalAccelerationMax, verticalAccelerationMax, verticalAcceleration);
+
+        return (verticalAcceleration, pitchAngleDemandDeg);
     }
 }
-
-
-
-//        %%
-//        function isAcceptDemand = SetFlightpathDemand(this, flightpathDemand)
-
-//            d = this.flightpathDemand;
-
-//    d.platformId = flightpathDemand.platformId;
-//    d.time       = flightpathDemand.time;
-
-//    [isAcceptHeadingDemand, headingAngleDemandDeg] = this.IsAcceptDemand(d.headingAngleDemandDeg, flightpathDemand.headingAngleDemandDeg, this.headingAngleToleranceDeg);
-//    [isAcceptSpeedDemand, speedDemand]           = this.IsAcceptDemand(d.speedDemand          , flightpathDemand.speedDemand          , this.speedTolerance);
-//    [isAcceptAltitudeDemand, altitudeDemand]        = this.IsAcceptDemand(d.altitudeDemand       , flightpathDemand.altitudeDemand       , this.altitudeTolerance);
-
-//            if (isAcceptHeadingDemand)
-//                d.headingAngleDemandDeg = headingAngleDemandDeg;
-//    end
-
-//            if (isAcceptSpeedDemand)
-//                d.speedDemand = speedDemand;
-//    end
-
-//            if (isAcceptAltitudeDemand)
-//                d.altitudeDemand = altitudeDemand;
-//    end
-
-//            isAcceptDemand = isAcceptHeadingDemand || isAcceptSpeedDemand || isAcceptAltitudeDemand;
-
-//    end
-
-//        %%
-//        function [isAcceptDemand, demand] = IsAcceptDemand(this, old, new, tolerance)
-
-//            isAcceptDemand = false;
-//            demand         = new;
-
-//            if (isnan(new))
-//                return;
-//            end
-
-//            diff = abs(old - new);
-
-//            if (diff > tolerance)
-//                isAcceptDemand = true;
-//                demand         = new;
-//            end
-
-//        end
-
-//        %%
-//        function[accelerationTBA, pitchAngleDemandDeg] = GetAccelerationTBA(this, time)
-
-//            axialAcceleration    = this.GetAxialAcceleration(time);
-//lateralAcceleration  = this.GetLateralAcceleration(time);
-
-//[verticalAcceleration, pitchAngleDemandDeg] = this.GetVerticalAcceleration(time);
-
-//accelerationTBA = [axialAcceleration, lateralAcceleration, verticalAcceleration]';
-
-//        end
-
-//        %%
-//        function axialAcceleration = GetAxialAcceleration(this, time)
-
-//            speed = norm(this.velocityNED);
-
-//speedDemand = this.flightpathDemand.speedDemand;
-
-//speedError = speed - speedDemand;
-
-//axialAcceleration = -speedError * this.axialAccelerationGain;
-
-//axialAcceleration = MathUtilities.LimitWithinRange(-this.axialAccelerationMax, this.axialAccelerationMax, axialAcceleration);
-
-//end
-
-//        %%
-//        function lateralAcceleration = GetLateralAcceleration(this, time)
-
-//            headingAngleDeg       = this.attitudeAnglesDeg(1);
-//headingAngleDemandDeg = this.flightpathDemand.headingAngleDemandDeg;
-
-//headingAngleErrorDeg = MathUtilities.AzimuthDifferenceDeg(headingAngleDeg, headingAngleDemandDeg);
-
-//lateralAcceleration = -headingAngleErrorDeg * this.lateralAccelerationGain;
-
-//lateralAcceleration = MathUtilities.LimitWithinRange(-this.lateralAccelerationMax, this.lateralAccelerationMax, lateralAcceleration);
-
-//end
-
-//        %%
-//        function [verticalAcceleration, pitchAngleDemandDeg] = GetVerticalAcceleration(this, time)
-
-//            altitude       = -this.positionNED(3);
-//altitudeDemand = this.flightpathDemand.altitudeDemand;
-
-//altitudeError = altitude - altitudeDemand;
-
-//pitchAngleDemandDeg = -altitudeError * this.pitchAngleGain;
-
-//pitchAngleDemandDeg = MathUtilities.LimitWithinRange(-this.pitchAngleMax, this.pitchAngleMax, pitchAngleDemandDeg);
-
-//pitchAngleDeg    = this.attitudeAnglesDeg(2);
-
-//pitchAngleErorDeg = pitchAngleDeg - pitchAngleDemandDeg;
-
-//verticalAcceleration = pitchAngleErorDeg * this.verticalAccelerationGain;
-
-//verticalAcceleration = MathUtilities.LimitWithinRange(-this.verticalAccelerationMax, this.verticalAccelerationMax, verticalAcceleration);
-
-//end
-
-//    end
-
-//end

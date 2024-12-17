@@ -1,4 +1,6 @@
-﻿namespace MissionEngineering.MathLibrary;
+﻿using static System.Math;
+
+namespace MissionEngineering.MathLibrary;
 
 public static class MathFunctions
 {
@@ -32,6 +34,30 @@ public static class MathFunctions
         {
             result += 360.0;
         }
+
+        return result;
+    }
+
+    public static double LimitWithinRange(double min, double max, double value)
+    {
+        if (value < min)
+        {
+            return min;
+        }
+
+        if (value > max)
+        {
+            return max;
+        }
+
+        return value;
+    }
+
+    public static double AzimuthDifferenceDeg(double a, double b)
+    {
+        var result = a - b;
+
+        result = ConstrainAnglePlusMinus180(result);
 
         return result;
     }
