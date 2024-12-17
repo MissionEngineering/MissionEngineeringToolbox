@@ -30,9 +30,11 @@ public class Scenario : IScenario, IExecutableModel
 
         foreach (var flightpathSettings in ScenarioSettings.FlightpathSettingsList)
         {
-            var flightpathAccelerationGenerator = new FlightpathAutopilot();
+            var flightpathDynamics = new FlightpathDynamics();
 
-            var flightpath = new Flightpath(SimulationClock, LLAOrigin)
+            var flightpathAutopilot = new FlightpathAutopilot(flightpathDynamics);
+
+            var flightpath = new Flightpath(SimulationClock, LLAOrigin, flightpathAutopilot)
             {
                 FlightpathSettings = flightpathSettings
             };

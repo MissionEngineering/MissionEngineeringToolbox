@@ -19,6 +19,17 @@ public record AccelerationNED
         AccelerationDown = accelerationDown;
     }
 
+    public AccelerationNED(double[] accelerationNED)
+    {
+        AccelerationNorth = accelerationNED[0];
+        AccelerationEast = accelerationNED[1];
+        AccelerationDown = accelerationNED[2];
+    }
+
+    public AccelerationNED(Vector accelerationNED) : this(accelerationNED.Data)
+    {
+    }
+
     public static AccelerationNED operator +(AccelerationNED left, AccelerationNED right)
     {
         var accelerationNorth = left.AccelerationNorth + right.AccelerationNorth;

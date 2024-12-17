@@ -18,4 +18,11 @@ public record AccelerationTBA
         AccelerationLateral = accelerationLateral;
         AccelerationVertical = accelerationVertical;
     }
+
+    public Vector ToVector()
+    {
+        var result = new Vector(AccelerationAxial, AccelerationLateral, AccelerationVertical);
+
+        return result;
+    }
 }

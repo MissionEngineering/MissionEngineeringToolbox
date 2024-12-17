@@ -17,10 +17,11 @@ public class Flightpath
 
     public ILLAOrigin LLAOrigin { get; set; }
 
-    public Flightpath(ISimulationClock simulationClock, ILLAOrigin llaOrigin)
+    public Flightpath(ISimulationClock simulationClock, ILLAOrigin llaOrigin, FlightpathAutopilot flightpathAutopilot)
     {
         SimulationClock = simulationClock;
         LLAOrigin = llaOrigin;
+        FlightpathAutopilot = flightpathAutopilot;
 
         FlightpathStateData = new FlightpathStateData();
         FlightpathStateDataList = new List<FlightpathStateData>();
@@ -29,8 +30,6 @@ public class Flightpath
     public void Initialise(double time)
     {
         var timeStamp = SimulationClock.GetTimeStamp(time);
-
-        FlightpathAutopilot = new FlightpathAutopilot();
 
         FlightpathStateData = new FlightpathStateData()
         {
@@ -48,14 +47,15 @@ public class Flightpath
 
         var deltaTime = new DeltaTime(dt);
 
+        var attitude = FrameConversions.GetAttitudeFromVelocityVector(FlightpathStateData.VelocityNED);
+
         var accelerationTBA = FlightpathAutopilot.GetAccelerationTBA(time);
-        var accelerationNED = new AccelerationNED();
+        var accelerationNED = FrameConversions.GetAccelerationNED(accelerationTBA, attitude);
 
         var velocityNED = FlightpathStateData.VelocityNED + FlightpathStateData.AccelerationNED * deltaTime;
         var positionNED = FlightpathStateData.PositionNED + FlightpathStateData.VelocityNED * deltaTime;
         var positionLLA = positionNED.ToPositionLLA(LLAOrigin.PositionLLA);
 
-        var attitude = new Attitude();
         var attitudeRate = new AttitudeRate();
 
         var timeStamp = SimulationClock.GetTimeStamp(time);

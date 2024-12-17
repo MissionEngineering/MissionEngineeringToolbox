@@ -1,4 +1,6 @@
-﻿namespace MissionEngineering.MathLibrary;
+﻿using static System.Math;
+
+namespace MissionEngineering.MathLibrary;
 
 public record VelocityNED
 {
@@ -7,6 +9,12 @@ public record VelocityNED
     public double VelocityEast { get; init; }
 
     public double VelocityDown { get; init; }
+
+    public double TotalSpeed => GetTotalSpeed();
+
+    public double GroundSpeed => GetGroundSpeed();
+
+    public double VerticalSpeed => -VelocityDown;
 
     public VelocityNED()
     {
@@ -105,6 +113,20 @@ public record VelocityNED
         var velocityDown = left / right.VelocityDown;
 
         var result = new VelocityNED(velocityNorth, velocityEast, velocityDown);
+
+        return result;
+    }
+
+    public double GetTotalSpeed()
+    {
+        var result = Sqrt(VelocityNorth * VelocityNorth + VelocityEast * VelocityEast + VelocityDown * VelocityDown);
+
+        return result;
+    }
+
+    public double GetGroundSpeed()
+    {
+        var result = Sqrt(VelocityNorth * VelocityNorth + VelocityEast * VelocityEast);
 
         return result;
     }

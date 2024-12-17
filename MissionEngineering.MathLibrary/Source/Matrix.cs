@@ -1,6 +1,6 @@
 ﻿namespace MissionEngineering.MathLibrary;
 
-public class Matrix
+public partial class Matrix
 {
     public int NumberOfRows => Data.GetLength(0);
 
@@ -26,5 +26,22 @@ public class Matrix
     {
         get => Data[rowIndex, columnIndex];
         set => Data[rowIndex, columnIndex] = value;
+    }
+
+    public Matrix Transpose()
+    {
+        var data = new double[NumberOfColumns, NumberOfRows];
+
+        for (int i = 0; i < data.GetLength(0); i++)
+        {
+            for (int j = 0; j < data.GetLength(1); j++)
+            {
+                data[i, j] = Data[j, i];
+            }
+        }
+
+        var result = new Matrix(data);
+
+        return result;
     }
 }

@@ -44,7 +44,11 @@ public class FlightpathGenerator
 
         SimulationClock = new SimulationClock(dateTimeOrigin);
 
-        Flightpath = new Flightpath(SimulationClock, LLAOrigin)
+        var flightpathDynamics = new FlightpathDynamics();
+
+        var flightpathAutoPilot = new FlightpathAutopilot(flightpathDynamics);
+
+        Flightpath = new Flightpath(SimulationClock, LLAOrigin, flightpathAutoPilot)
         {
             FlightpathSettings = FlightpathSettings
         };

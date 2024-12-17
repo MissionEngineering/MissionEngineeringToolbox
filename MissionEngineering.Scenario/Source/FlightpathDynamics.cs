@@ -1,0 +1,25 @@
+﻿namespace MissionEngineering.Scenario;
+
+public record FlightpathDynamics
+{
+    public double AxialAccelerationGain { get; init; }
+    public double AxialAccelerationMaximum { get; init; }
+    public double LateralAccelerationGain { get; init; }
+    public double LateralAccelerationMaximum { get; init; }
+    public double PitchAngleGain { get; init; }
+    public double PitchAngleMaximumDeg { get; init; }
+    public double VerticalAccelerationGain { get; init; }
+    public double VerticalAccelerationMaximum { get; init; }
+
+    public FlightpathDynamics()
+    {
+        AxialAccelerationGain = 20.0;
+        AxialAccelerationMaximum = 20.0;
+        LateralAccelerationGain = 10.0;
+        LateralAccelerationMaximum = 15.0;
+        PitchAngleGain = 0.05;
+        PitchAngleMaximumDeg = 20.0;
+        VerticalAccelerationGain = 10.0;
+        VerticalAccelerationMaximum = 20.0;
+    }
+}
