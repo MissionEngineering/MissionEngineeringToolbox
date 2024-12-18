@@ -13,12 +13,11 @@ public class SimdisExporter : ISimdisExporter
     public SimdisExporter(SimulationData simulationData)
     {
         SimulationData = simulationData;
+        SimdisData = new StringBuilder();
     }
 
     public void GenerateSimdisData()
     {
-        SimdisData = new StringBuilder();
-
         CreateSimdisHeader();
 
         CreatePlatforms();

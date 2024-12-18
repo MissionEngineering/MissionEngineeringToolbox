@@ -5,7 +5,7 @@ namespace MissionEngineering.SimdisLibrary;
 
 public interface ISimdisExporter
 {
-    public SimulationData SimulationData { get; set; }
+    SimulationData SimulationData { get; set; }
 
     StringBuilder SimdisData { get; set; }
 

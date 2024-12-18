@@ -1,4 +1,5 @@
 ﻿using MissionEngineering.Scenario;
+using MissionEngineering.SimdisLibrary;
 using MissionEngineering.Simulation;
 
 namespace MissionEngineering.DataRecorder;
@@ -6,6 +7,8 @@ namespace MissionEngineering.DataRecorder;
 public interface IDataRecorder
 {
     SimulationData SimulationData { get; set; }
+
+    public ISimdisExporter SimdisExporter { get; set; }
 
     void AddFlightpathStateData(FlightpathStateData flightpathStateData);
 

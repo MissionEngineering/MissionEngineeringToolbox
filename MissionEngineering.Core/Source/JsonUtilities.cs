@@ -4,6 +4,8 @@ namespace MissionEngineering.Core;
 
 public static class JsonUtilities
 {
+    public static bool IsUseMock = false;
+
     public static string ConvertToJsonString<T>(this T obj)
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
@@ -24,6 +26,11 @@ public static class JsonUtilities
 
     public static void WriteToJsonFile<T>(this T obj, string fileName)
     {
+        if (IsUseMock)
+        {
+            return;
+        }
+
         string jsonString = obj.ConvertToJsonString();
 
         File.WriteAllText(fileName, jsonString);
@@ -31,6 +38,11 @@ public static class JsonUtilities
 
     public static T ReadFromJsonFile<T>(string fileName)
     {
+        if (IsUseMock)
+        {
+            return default;
+        }
+
         var jsonString = File.ReadAllText(fileName);
 
         T obj = ConvertFromJsonString<T>(jsonString);
