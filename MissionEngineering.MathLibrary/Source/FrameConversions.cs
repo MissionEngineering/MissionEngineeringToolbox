@@ -27,11 +27,10 @@ public static class FrameConversions
     {
         var headingAngle = Atan2(velocityNED.VelocityEast, velocityNED.VelocityNorth);
         var pitchAngle = -Asin(velocityNED.VelocityDown / velocityNED.TotalSpeed);
-        var bankAngle = 0.0;
 
         var headingAngleDeg = headingAngle.RadiansToDegrees();
         var pitchAngleDeg = pitchAngle.RadiansToDegrees();
-        var bankAngleDeg = bankAngle.RadiansToDegrees();
+        var bankAngleDeg = 0.0;
 
         var attitude = new Attitude(headingAngleDeg, pitchAngleDeg, bankAngleDeg);
 

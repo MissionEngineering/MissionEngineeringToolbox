@@ -26,6 +26,8 @@ public record FlightpathStateData
 
     public required AttitudeRate AttitudeRate { get; init; }
 
+    public required FlightpathDemand FlightpathDemand { get; set; }
+
     [SetsRequiredMembers]
     public FlightpathStateData()
     {
@@ -39,5 +41,6 @@ public record FlightpathStateData
         AccelerationTBA = new AccelerationTBA(0.0, 0.0, 0.0);
         Attitude = new Attitude(0.0, 0.0, 0.0);
         AttitudeRate = new AttitudeRate(0.0, 0.0, 0.0);
+        FlightpathDemand = new FlightpathDemand();
     }
 }

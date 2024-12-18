@@ -20,10 +20,10 @@ public class FlightpathAutopilot
 
     public void Initialise(double time)
     {
-        FlightpathDemand.FlightpathId = FlightpathStateData.FlightpathId;
-        FlightpathDemand.Time = time;
+        FlightpathDemand.FlightpathDemandFlightpathId = FlightpathStateData.FlightpathId;
+        FlightpathDemand.FlightpathDemandTime = time;
         FlightpathDemand.HeadingAngleDemandDeg = FlightpathStateData.Attitude.HeadingAngleDeg;
-        FlightpathDemand.SpeedDemand = FlightpathStateData.VelocityNED.TotalSpeed;
+        FlightpathDemand.TotalSpeedDemand = FlightpathStateData.VelocityNED.TotalSpeed;
         FlightpathDemand.AltitudeDemand = FlightpathStateData.PositionLLA.Altitude;
     }
 
@@ -31,7 +31,7 @@ public class FlightpathAutopilot
     {
         var axialAcceleration = GetAxialAcceleration();
         var lateralAcceleration = GetLateralAcceleration();
-        var (verticalAcceleration, pitchAngleDemandDeg) = GetVerticalAcceleration();
+        var verticalAcceleration = GetVerticalAcceleration();
 
         var accelerationTBA = new AccelerationTBA(axialAcceleration, lateralAcceleration, verticalAcceleration);
 
@@ -40,7 +40,11 @@ public class FlightpathAutopilot
 
     public void SetFlightpathDemand(FlightpathDemand flightpathDemand)
     {
-        FlightpathDemand = flightpathDemand;
+        var flightpathDemandId = FlightpathDemand.FlightpathDemandModificationId;
+
+        flightpathDemandId++;
+
+        FlightpathDemand = flightpathDemand with { FlightpathDemandModificationId = flightpathDemandId };
     }
 
     public double GetAxialAcceleration()
@@ -49,7 +53,7 @@ public class FlightpathAutopilot
 
         var speed = FlightpathStateData.VelocityNED.TotalSpeed;
 
-        var speedDemand = FlightpathDemand.SpeedDemand;
+        var speedDemand = FlightpathDemand.TotalSpeedDemand;
 
         var speedError = speed - speedDemand;
 
@@ -64,8 +68,8 @@ public class FlightpathAutopilot
     {
         var lateralAccelerationMax = FlightpathDynamics.LateralAccelerationMaximum;
 
-        var headingAngleDeg       = FlightpathStateData.Attitude.HeadingAngleDeg;
-        
+        var headingAngleDeg = FlightpathStateData.Attitude.HeadingAngleDeg;
+
         var headingAngleDemandDeg = FlightpathDemand.HeadingAngleDemandDeg;
 
         var headingAngleErrorDeg = MathFunctions.AzimuthDifferenceDeg(headingAngleDeg, headingAngleDemandDeg);
@@ -74,15 +78,25 @@ public class FlightpathAutopilot
 
         lateralAcceleration = MathFunctions.LimitWithinRange(-lateralAccelerationMax, lateralAccelerationMax, lateralAcceleration);
 
+        var bankAngleDemandDeg = SetBankAngleFromLateralAcceleration(lateralAcceleration);
+
+        var bankAngleDeg = FlightpathStateData.Attitude.BankAngleDeg;
+
+        var bankAngleErrorDeg = bankAngleDeg - bankAngleDemandDeg;
+
+        var bankAngleRateDemandDeg = -bankAngleErrorDeg * FlightpathDynamics.BankAngleGain;
+
+        FlightpathDemand = FlightpathDemand with { BankAngleDemandDeg = bankAngleDemandDeg, BankAngleRateDemandDeg = bankAngleRateDemandDeg };
+
         return lateralAcceleration;
     }
 
-    public (double verticalAcceleration, double pitchAngleDemandDeg) GetVerticalAcceleration()
+    public double GetVerticalAcceleration()
     {
         var pitchAngleMaxDeg = FlightpathDynamics.PitchAngleMaximumDeg;
         var verticalAccelerationMax = FlightpathDynamics.VerticalAccelerationMaximum;
 
-        var altitude       = FlightpathStateData.PositionLLA.Altitude;
+        var altitude = FlightpathStateData.PositionLLA.Altitude;
 
         var altitudeDemand = FlightpathDemand.AltitudeDemand;
 
@@ -92,7 +106,7 @@ public class FlightpathAutopilot
 
         pitchAngleDemandDeg = MathFunctions.LimitWithinRange(-pitchAngleMaxDeg, pitchAngleMaxDeg, pitchAngleDemandDeg);
 
-        var pitchAngleDeg    = FlightpathStateData.Attitude.PitchAngleDeg;
+        var pitchAngleDeg = FlightpathStateData.Attitude.PitchAngleDeg;
 
         var pitchAngleErorDeg = pitchAngleDeg - pitchAngleDemandDeg;
 
@@ -100,6 +114,20 @@ public class FlightpathAutopilot
 
         verticalAcceleration = MathFunctions.LimitWithinRange(-verticalAccelerationMax, verticalAccelerationMax, verticalAcceleration);
 
-        return (verticalAcceleration, pitchAngleDemandDeg);
+        FlightpathDemand = FlightpathDemand with { PitchAngleDemandDeg = pitchAngleDemandDeg };
+
+        return verticalAcceleration;
+    }
+
+    public double SetBankAngleFromLateralAcceleration(double lateralAcceleration)
+    {
+        if (!FlightpathDynamics.IsUseBankedTurns)
+        {
+            return 0.0;
+        }
+
+        var bankAngleDemandDeg = MathFunctions.CalculateBankAngleDegFromLateralAcceleration(lateralAcceleration);
+
+        return bankAngleDemandDeg;
     }
 }

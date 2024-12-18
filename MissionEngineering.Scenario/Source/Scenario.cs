@@ -49,6 +49,13 @@ public class Scenario : IScenario, IExecutableModel
     {
         foreach (var flightpath in FlightpathList)
         {
+            var flightpathDemand = GetFlightpathDemand(flightpath, time);
+
+            if (flightpathDemand != null)
+            {
+                flightpath.SetFlightpathDemand(flightpathDemand);
+            }
+
             flightpath.Update(time);
         }
     }
@@ -59,5 +66,38 @@ public class Scenario : IScenario, IExecutableModel
         {
             flightpath.Finalise(time);
         }
+    }
+
+    public FlightpathDemand GetFlightpathDemand(Flightpath flightpath, double time)
+    {
+        FlightpathDemand flightpathDemand = null;
+
+        if (time > 20.0)
+        {
+            flightpathDemand = new FlightpathDemand()
+            {
+                FlightpathDemandFlightpathId = flightpath.FlightpathSettings.FlightpathId,
+                FlightpathDemandModificationId = 1,
+                FlightpathDemandTime = time,
+                HeadingAngleDemandDeg = 45.0,
+                TotalSpeedDemand = 300.0,
+                AltitudeDemand = 9000.0
+            };
+        }
+
+        if (time > 120.0)
+        {
+            flightpathDemand = new FlightpathDemand()
+            {
+                FlightpathDemandFlightpathId = flightpath.FlightpathSettings.FlightpathId,
+                FlightpathDemandModificationId = 2,
+                FlightpathDemandTime = time,
+                HeadingAngleDemandDeg = -135,
+                TotalSpeedDemand = 200.0,
+                AltitudeDemand = 6000.0
+            };
+        }
+
+        return flightpathDemand;
     }
 }

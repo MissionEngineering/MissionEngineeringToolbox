@@ -49,6 +49,8 @@ public class Flightpath
         FlightpathAutopilot.FlightpathStateData = FlightpathStateData;
 
         FlightpathAutopilot.Initialise(time);
+
+        FlightpathStateData.FlightpathDemand = FlightpathAutopilot.FlightpathDemand;
     }
 
     public void Update(double time)
@@ -56,6 +58,8 @@ public class Flightpath
         var dt = time - FlightpathStateData.TimeStamp.Time;
 
         var deltaTime = new DeltaTime(dt);
+
+        var bankAngleDegOld = FlightpathStateData.Attitude.BankAngleDeg;
 
         var attitude = FrameConversions.GetAttitudeFromVelocityVector(FlightpathStateData.VelocityNED);
 
@@ -68,7 +72,13 @@ public class Flightpath
         var positionNED = FlightpathStateData.PositionNED + FlightpathStateData.VelocityNED * deltaTime;
         var positionLLA = positionNED.ToPositionLLA(LLAOrigin.PositionLLA);
 
-        var attitudeRate = new AttitudeRate();
+        var bankAngleRateDeg = FlightpathAutopilot.FlightpathDemand.BankAngleRateDemandDeg;
+
+        var bankAngleDeg = bankAngleDegOld + bankAngleRateDeg * dt;
+
+        attitude = attitude with { BankAngleDeg = bankAngleDeg };
+
+        var attitudeRate = new AttitudeRate(0.0, 0.0, bankAngleRateDeg);
 
         var timeStamp = SimulationClock.GetTimeStamp(time);
 
@@ -84,6 +94,7 @@ public class Flightpath
             AccelerationTBA = accelerationTBA,
             Attitude = attitude,
             AttitudeRate = attitudeRate,
+            FlightpathDemand = FlightpathAutopilot.FlightpathDemand
         };
 
         FlightpathStateDataList.Add(FlightpathStateData);
@@ -91,5 +102,15 @@ public class Flightpath
 
     public void Finalise(double time)
     {
+    }
+
+    public void SetFlightpathDemand(FlightpathDemand flightpathDemand)
+    {
+        if (flightpathDemand.FlightpathDemandModificationId == FlightpathAutopilot.FlightpathDemand.FlightpathDemandModificationId)
+        { 
+            return; 
+        }
+
+        FlightpathAutopilot.SetFlightpathDemand(flightpathDemand);
     }
 }
