@@ -46,16 +46,16 @@ public class SimdisExporter : ISimdisExporter
 
     public void CreateSimdisHeader()
     {
-        AddLine("Version 24", true);
-
         var llaOrigin = DataRecorder.SimulationData.ScenarioSettings.LLAOrigin;
 
-        AddLine($"RefLLA          {llaOrigin.LatitudeDeg} {llaOrigin.LongitudeDeg} {llaOrigin.Altitude}");
-        AddLine("""CoordSystem      "LLA" """);
+        AddLine("Version          24");
         AddLine("""Classification   "Unclassified" 0x8000FF00""");
-        AddLine("DegreeAngles     1");
+        AddLine(@$"ScenarioInfo     ""{DataRecorder.SimulationData.SimulationSettings.SimulationName}"" ");
         AddLine("""VerticalDatum    "WGS84" """);
+        AddLine("""CoordSystem      "LLA" """); 
+        AddLine($"RefLLA           {llaOrigin.LatitudeDeg} {llaOrigin.LongitudeDeg} {llaOrigin.Altitude}");
         AddLine("""ReferenceTimeECI "0.0" """);
+        AddLine("DegreeAngles     1");
         AddLine("");
     }
 
@@ -87,11 +87,14 @@ public class SimdisExporter : ISimdisExporter
     public void CreatePlatformInitialisation(int platformId, FlightpathSettings flightpathSettings)
     {
         AddLine($"PlatformID          {platformId}");
-        AddLine($"PlatformName        {platformId} {flightpathSettings.FlightpathName}");
+        AddLine(@$"PlatformName        {platformId} ""{flightpathSettings.FlightpathName}"" ");
         AddLine(@$"PlatformType        {platformId} ""aircraft""");
+        AddLine(@$"PlatformIcon        {platformId} ""f-35a_lightning""");
         AddLine($"PlatformFHN         {platformId} F");
         AddLine($"PlatformInterpolate {platformId} 1");
-        AddLine(@$"PlatformIcon        {platformId} ""f-35a_lightning""");
+        AddLine(""); 
+        AddLine(@$"GenericData         {platformId} ""SIMDIS_DynamicScale"" ""1"" ""0"" ");
+        AddLine(@$"GenericData         {platformId} ""SIMDIS_ScaleLevel"" ""2.5"" ""0"" ");
         AddLine("");
     }
 
