@@ -1,11 +1,11 @@
 ﻿using System.Text;
-using MissionEngineering.DataRecorder;
+using MissionEngineering.Simulation;
 
 namespace MissionEngineering.SimdisLibrary;
 
 public interface ISimdisExporter
 {
-    public IDataRecorder DataRecorder { get; set; }
+    public SimulationData SimulationData { get; set; }
 
     StringBuilder SimdisData { get; set; }
 

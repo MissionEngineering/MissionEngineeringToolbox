@@ -18,8 +18,6 @@ namespace MissionEngineering.ScenarioGenerator
 
         public IDataRecorder DataRecorder { get; set; }
 
-        public ISimdisExporter SimdisExporter { get; set; }
-
         void Run();
 
         void Initialise(double time);

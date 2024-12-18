@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MissionEngineering.DataRecorder;
 using MissionEngineering.Scenario;
+using MissionEngineering.Simulation;
 
 namespace MissionEngineering.SimdisLibrary;
 
 public class SimdisExporter : ISimdisExporter
 {
-    public IDataRecorder DataRecorder { get; set; }
+    public SimulationData SimulationData { get; set; }
 
     public StringBuilder SimdisData { get; set; }
 
-    public SimdisExporter(IDataRecorder dataRecorder)
+    public SimdisExporter(SimulationData simulationData)
     {
-        DataRecorder = dataRecorder;
+        SimulationData = simulationData;
     }
 
     public void GenerateSimdisData()
@@ -30,14 +30,14 @@ public class SimdisExporter : ISimdisExporter
 
     public void WriteSimdisData()
     {
-        if (!DataRecorder.SimulationData.SimulationSettings.IsWriteData)
+        if (!SimulationData.SimulationSettings.IsWriteData)
         {
             return;
         }
 
-        var fileName = $"{DataRecorder.SimulationData.SimulationSettings.SimulationName}.asi";
+        var fileName = $"{SimulationData.SimulationSettings.SimulationName}.asi";
 
-        var fileNameFull = DataRecorder.GetFileNameFull(fileName);
+        var fileNameFull = SimulationData.SimulationSettings.GetFileNameFull(fileName);
 
         var strings = SimdisData.ToString();
 
@@ -46,11 +46,11 @@ public class SimdisExporter : ISimdisExporter
 
     public void CreateSimdisHeader()
     {
-        var llaOrigin = DataRecorder.SimulationData.ScenarioSettings.LLAOrigin;
+        var llaOrigin = SimulationData.ScenarioSettings.LLAOrigin;
 
         AddLine("Version          24");
         AddLine("""Classification   "Unclassified" 0x8000FF00""");
-        AddLine(@$"ScenarioInfo     ""{DataRecorder.SimulationData.SimulationSettings.SimulationName}"" ");
+        AddLine(@$"ScenarioInfo     ""{SimulationData.SimulationSettings.SimulationName}"" ");
         AddLine("""VerticalDatum    "WGS84" """);
         AddLine("""CoordSystem      "LLA" """); 
         AddLine($"RefLLA           {llaOrigin.LatitudeDeg} {llaOrigin.LongitudeDeg} {llaOrigin.Altitude}");
@@ -63,13 +63,13 @@ public class SimdisExporter : ISimdisExporter
     {
         var index = 0;
 
-        foreach (var flightpathSettings in DataRecorder.SimulationData.ScenarioSettings.FlightpathSettingsList)
+        foreach (var flightpathSettings in SimulationData.ScenarioSettings.FlightpathSettingsList)
         {
             var flightpathId = flightpathSettings.FlightpathId;
 
             var platformId = GetPlatformId(flightpathId);
 
-            var flightpathStateDataList = DataRecorder.SimulationData.FlightpathStateDataPerFlightpath[index];
+            var flightpathStateDataList = SimulationData.FlightpathStateDataPerFlightpath[index];
 
             CreatePlatformInitialisation(platformId, flightpathSettings);
 
@@ -94,7 +94,7 @@ public class SimdisExporter : ISimdisExporter
         AddLine($"PlatformInterpolate {platformId} 1");
         AddLine(""); 
         AddLine(@$"GenericData         {platformId} ""SIMDIS_DynamicScale"" ""1"" ""0"" ");
-        AddLine(@$"GenericData         {platformId} ""SIMDIS_ScaleLevel"" ""2.5"" ""0"" ");
+        AddLine(@$"GenericData         {platformId} ""SIMDIS_ScaleLevel"" ""4.0"" ""0"" ");
         AddLine("");
     }
 

@@ -7,12 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MissionEngineering.Core\MissionEngineering.Core.csproj" />
-    <ProjectReference Include="..\MissionEngineering.MathLibrary\MissionEngineering.MathLibrary.csproj" />
     <ProjectReference Include="..\MissionEngineering.Scenario\MissionEngineering.Scenario.csproj" />
-    <ProjectReference Include="..\MissionEngineering.SimdisLibrary\MissionEngineering.SimdisLibrary.csproj" />
     <ProjectReference Include="..\MissionEngineering.Simulation.Core\MissionEngineering.Simulation.Core.csproj" />
-    <ProjectReference Include="..\MissionEngineering.Simulation\MissionEngineering.Simulation.csproj" />
   </ItemGroup>
 
 </Project>

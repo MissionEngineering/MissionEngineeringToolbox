@@ -1,7 +1,7 @@
 ﻿using MissionEngineering.Scenario;
 using MissionEngineering.Simulation.Core;
 
-namespace MissionEngineering.DataRecorder;
+namespace MissionEngineering.Simulation;
 
 public class SimulationData
 {

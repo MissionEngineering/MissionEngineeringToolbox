@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Scenario
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.SimdisLibrary", "MissionEngineering.SimdisLibrary\MissionEngineering.SimdisLibrary.csproj", "{8D08DB70-DB41-4C33-B21B-80A560CE3D49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Simulation", "MissionEngineering.Simulation\MissionEngineering.Simulation.csproj", "{9A93AB98-2A92-49C9-B817-8C9B4A18734A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{8D08DB70-DB41-4C33-B21B-80A560CE3D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D08DB70-DB41-4C33-B21B-80A560CE3D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D08DB70-DB41-4C33-B21B-80A560CE3D49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A93AB98-2A92-49C9-B817-8C9B4A18734A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A93AB98-2A92-49C9-B817-8C9B4A18734A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A93AB98-2A92-49C9-B817-8C9B4A18734A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A93AB98-2A92-49C9-B817-8C9B4A18734A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

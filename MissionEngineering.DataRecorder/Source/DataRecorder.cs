@@ -1,7 +1,7 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using MissionEngineering.Core;
+﻿using MissionEngineering.Core;
 using MissionEngineering.Scenario;
-using MissionEngineering.Simulation.Core;
+using MissionEngineering.SimdisLibrary;
+using MissionEngineering.Simulation;
 
 namespace MissionEngineering.DataRecorder;
 
@@ -9,9 +9,12 @@ public class DataRecorder : IDataRecorder
 {
     public SimulationData SimulationData { get; set; }
 
-    public DataRecorder(SimulationData simulationData)
+    public ISimdisExporter SimdisExporter { get; set; }
+
+    public DataRecorder(SimulationData simulationData, ISimdisExporter simdisExporter)
     {
         SimulationData = simulationData;
+        SimdisExporter = simdisExporter;
     }
 
     public void Initialise(double time)
@@ -24,8 +27,33 @@ public class DataRecorder : IDataRecorder
     {
         CreateFlightpathData();
 
+        WriteData();
+    }
+
+    public void WriteData()
+    {
+        if (!SimulationData.SimulationSettings.IsWriteData)
+        {
+            return;
+        }
+
+        CreateOutputFolder();
+
         WriteJsonData();
         WriteCsvData();
+        WriteSimdisData();
+
+        ProduceZipFile();
+    }
+
+    public void CreateOutputFolder()
+    {
+        if (Directory.Exists(SimulationData.SimulationSettings.OutputFolder))
+        { 
+            return;
+        }
+
+        Directory.CreateDirectory(SimulationData.SimulationSettings.OutputFolder);
     }
 
     public void AddFlightpathStateData(FlightpathStateData flightpathStateData)
@@ -52,13 +80,29 @@ public class DataRecorder : IDataRecorder
 
     public void WriteJsonData()
     {
-        if (!SimulationData.SimulationSettings.IsWriteData)
-        {
-            return;
-        }
-
         WriteSimulationSettingsToJson();
         WriteScenarioSettingsToJson();
+    }
+
+    public void WriteCsvData()
+    {
+        WriteFlightpathDataAllToCsv();
+        WriteFlightpathDataPerFlightpathToCsv();
+    }
+
+    public void WriteSimdisData()
+    {
+        SimdisExporter.GenerateSimdisData();
+        SimdisExporter.WriteSimdisData();
+    }
+
+    public void ProduceZipFile()
+    {
+        var zipFileName = $"{SimulationData.SimulationSettings.SimulationName}.zip";
+
+        var zipFileNameFull = SimulationData.SimulationSettings.GetFileNameFull(zipFileName);
+
+        ZipUtilities.ZipDirectory(SimulationData.SimulationSettings.OutputFolder, zipFileNameFull);
     }
 
     public void WriteSimulationSettingsToJson()
@@ -77,17 +121,6 @@ public class DataRecorder : IDataRecorder
         var fileNameFull = GetFileNameFull(fileName);
 
         SimulationData.ScenarioSettings.WriteToJsonFile(fileNameFull);
-    }
-
-    public void WriteCsvData()
-    {
-        if (!SimulationData.SimulationSettings.IsWriteData)
-        {
-            return;
-        }
-
-        WriteFlightpathDataAllToCsv();
-        WriteFlightpathDataPerFlightpathToCsv();
     }
 
     public void WriteFlightpathDataAllToCsv()
@@ -121,7 +154,7 @@ public class DataRecorder : IDataRecorder
 
     public string GetFileNameFull(string fileName)
     {
-        var fileNameFull = Path.Combine(SimulationData.SimulationSettings.OutputFolder, fileName);
+        var fileNameFull = SimulationData.SimulationSettings.GetFileNameFull(fileName);
 
         return fileNameFull;
     }

@@ -12,7 +12,7 @@ public static class CsvUtilities
 
         using var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
 
-        var options = new TypeConverterOptions { Formats = ["dd/MM/yyyy HH:mm:ss.fff"] };
+        var options = new TypeConverterOptions { Formats = ["yyyy-MM-ddTHH:mm:ss.fffZ"] };
         csvWriter.Context.TypeConverterOptionsCache.AddOptions<DateTime>(options);
 
         csvWriter.WriteRecords(records);

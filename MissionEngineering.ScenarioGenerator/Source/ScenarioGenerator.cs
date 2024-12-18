@@ -18,15 +18,12 @@ public class ScenarioGenerator : IScenarioGenerator
 
     public IDataRecorder DataRecorder { get; set; }
 
-    public ISimdisExporter SimdisExporter { get; set; }
-
-    public ScenarioGenerator(IScenario scenario, ILLAOrigin llaOrigin, ISimulationClock simulationClock, IDataRecorder dataRecorder, ISimdisExporter simdisExporter)
+    public ScenarioGenerator(IScenario scenario, ILLAOrigin llaOrigin, ISimulationClock simulationClock, IDataRecorder dataRecorder)
     {
         Scenario = scenario;
         LLAOrigin = llaOrigin;
         SimulationClock = simulationClock;
         DataRecorder = dataRecorder;
-        SimdisExporter = simdisExporter;
     }
 
     public void Run()
@@ -76,9 +73,6 @@ public class ScenarioGenerator : IScenarioGenerator
         DataRecorder.SimulationData.FlightpathStateDataAll = flightpathDataAll;
 
         DataRecorder.Finalise(time);
-
-        SimdisExporter.GenerateSimdisData();
-        SimdisExporter.WriteSimdisData();
     }
 
     public List<FlightpathStateData> GenerateFlightpathDataAll()
