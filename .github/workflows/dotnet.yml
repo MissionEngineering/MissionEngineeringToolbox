@@ -38,4 +38,6 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         files: /home/runner/work/MissionEngineeringToolbox/MissionEngineeringToolbox/MissionEngineering.Core.Tests/coverage.info
                /home/runner/work/MissionEngineeringToolbox/MissionEngineeringToolbox/MissionEngineering.MathLibrary.Tests/coverage.info
+               /home/runner/work/MissionEngineeringToolbox/MissionEngineeringToolbox/MissionEngineering.Scanner.Tests/coverage.info
                /home/runner/work/MissionEngineeringToolbox/MissionEngineeringToolbox/MissionEngineering.ScenarioGenerator.Tests/coverage.info
+               /home/runner/work/MissionEngineeringToolbox/MissionEngineeringToolbox/MissionEngineering.SimdisLibrary.Tests/coverage.info
