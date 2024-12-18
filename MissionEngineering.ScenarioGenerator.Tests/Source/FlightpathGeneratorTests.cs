@@ -1,5 +1,4 @@
-﻿using MissionEngineering.Core;
-using MissionEngineering.MathLibrary;
+﻿using MissionEngineering.MathLibrary;
 using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.ScenarioGenerator.Tests;

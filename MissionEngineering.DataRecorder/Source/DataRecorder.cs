@@ -49,7 +49,7 @@ public class DataRecorder : IDataRecorder
     public void CreateOutputFolder()
     {
         if (Directory.Exists(SimulationData.SimulationSettings.OutputFolder))
-        { 
+        {
             return;
         }
 

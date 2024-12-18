@@ -20,7 +20,6 @@ public class SimulationSettings
 
     public bool IsCreateZipFile { get; set; }
 
-
     public SimulationSettings()
     {
         OutputFolderBase = @"C:\Temp\MissionEngineeringToolbox\";

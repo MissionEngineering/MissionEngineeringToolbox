@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using MissionEngineering.Scanner.Source;
-
-namespace MissionEngineering.Scanner.Tests
+﻿namespace MissionEngineering.Scanner.Tests
 {
     [TestClass]
     public sealed class ScanGeneratorTests

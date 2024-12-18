@@ -106,5 +106,4 @@ public sealed class Interpolation1DTests
         // Assert:
         Assert.IsTrue(isEqual);
     }
-
 }

@@ -107,8 +107,8 @@ public class Flightpath
     public void SetFlightpathDemand(FlightpathDemand flightpathDemand)
     {
         if (flightpathDemand.FlightpathDemandModificationId == FlightpathAutopilot.FlightpathDemand.FlightpathDemandModificationId)
-        { 
-            return; 
+        {
+            return;
         }
 
         FlightpathAutopilot.SetFlightpathDemand(flightpathDemand);

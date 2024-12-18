@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MissionEngineering.MathLibrary;
 using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.Scanner;
@@ -17,7 +16,7 @@ public static class ScanBuilder
         services.AddScoped<IScanner, Scanner>();
         services.AddScoped<IScanGenerator, ScanGenerator>();
         services.AddScoped<IDateTimeOrigin, DateTimeOrigin>();
-        services.AddScoped<ScanStateData, ScanStateData>(); 
+        services.AddScoped<ScanStateData, ScanStateData>();
 
         using var serviceProvider = services.BuildServiceProvider();
 

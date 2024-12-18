@@ -1,5 +1,4 @@
 ﻿using MissionEngineering.Simulation;
-using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.Scanner;
 
@@ -48,5 +47,4 @@ public record ScanStateData
     public double AzimuthRateDeg { get; set; }
 
     public double ElevationRateDeg { get; set; }
-
 }
