@@ -9,7 +9,7 @@ public sealed class ScenarioGeneratorTests
     public void Run_WithValidData_ExpectSuccess()
     {
         // Arrange:
-        MockUtilities.SetMock(true);
+        MockUtilities.SetMock(false);
 
         var scenarioSettings = ScenarioSettingsFactory.ScenarioSettings_Test_1();
 
