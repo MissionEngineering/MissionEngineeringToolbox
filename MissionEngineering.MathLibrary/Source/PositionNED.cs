@@ -30,71 +30,71 @@ public record PositionNED
         return result;
     }
 
-    public static PositionNED operator -(PositionNED left)
-    {
-        var positionNorth = -left.PositionNorth;
-        var positionEast = -left.PositionEast;
-        var positionDown = -left.PositionDown;
+    //public static PositionNED operator -(PositionNED left)
+    //{
+    //    var positionNorth = -left.PositionNorth;
+    //    var positionEast = -left.PositionEast;
+    //    var positionDown = -left.PositionDown;
 
-        var result = new PositionNED(positionNorth, positionEast, positionDown);
+    //    var result = new PositionNED(positionNorth, positionEast, positionDown);
 
-        return result;
-    }
+    //    return result;
+    //}
 
-    public static PositionNED operator -(PositionNED left, PositionNED right)
-    {
-        var positionNorth = left.PositionNorth - right.PositionNorth;
-        var positionEast = left.PositionEast - right.PositionEast;
-        var positionDown = left.PositionDown - right.PositionDown;
+    //public static PositionNED operator -(PositionNED left, PositionNED right)
+    //{
+    //    var positionNorth = left.PositionNorth - right.PositionNorth;
+    //    var positionEast = left.PositionEast - right.PositionEast;
+    //    var positionDown = left.PositionDown - right.PositionDown;
 
-        var result = new PositionNED(positionNorth, positionEast, positionDown);
+    //    var result = new PositionNED(positionNorth, positionEast, positionDown);
 
-        return result;
-    }
+    //    return result;
+    //}
 
-    public static PositionNED operator *(PositionNED left, double right)
-    {
-        var positionNorth = left.PositionNorth * right;
-        var positionEast = left.PositionEast * right;
-        var positionDown = left.PositionDown * right;
+    //public static PositionNED operator *(PositionNED left, double right)
+    //{
+    //    var positionNorth = left.PositionNorth * right;
+    //    var positionEast = left.PositionEast * right;
+    //    var positionDown = left.PositionDown * right;
 
-        var result = new PositionNED(positionNorth, positionEast, positionDown);
+    //    var result = new PositionNED(positionNorth, positionEast, positionDown);
 
-        return result;
-    }
+    //    return result;
+    //}
 
-    public static PositionNED operator *(double left, PositionNED right)
-    {
-        var positionNorth = left * right.PositionNorth;
-        var positionEast = left * right.PositionEast;
-        var positionDown = left * right.PositionDown;
+    //public static PositionNED operator *(double left, PositionNED right)
+    //{
+    //    var positionNorth = left * right.PositionNorth;
+    //    var positionEast = left * right.PositionEast;
+    //    var positionDown = left * right.PositionDown;
 
-        var result = new PositionNED(positionNorth, positionEast, positionDown);
+    //    var result = new PositionNED(positionNorth, positionEast, positionDown);
 
-        return result;
-    }
+    //    return result;
+    //}
 
-    public static PositionNED operator /(PositionNED left, double right)
-    {
-        var positionNorth = left.PositionNorth / right;
-        var positionEast = left.PositionEast / right;
-        var positionDown = left.PositionDown / right;
+    //public static PositionNED operator /(PositionNED left, double right)
+    //{
+    //    var positionNorth = left.PositionNorth / right;
+    //    var positionEast = left.PositionEast / right;
+    //    var positionDown = left.PositionDown / right;
 
-        var result = new PositionNED(positionNorth, positionEast, positionDown);
+    //    var result = new PositionNED(positionNorth, positionEast, positionDown);
 
-        return result;
-    }
+    //    return result;
+    //}
 
-    public static PositionNED operator /(double left, PositionNED right)
-    {
-        var positionNorth = left / right.PositionNorth;
-        var positionEast = left / right.PositionEast;
-        var positionDown = left / right.PositionDown;
+    //public static PositionNED operator /(double left, PositionNED right)
+    //{
+    //    var positionNorth = left / right.PositionNorth;
+    //    var positionEast = left / right.PositionEast;
+    //    var positionDown = left / right.PositionDown;
 
-        var result = new PositionNED(positionNorth, positionEast, positionDown);
+    //    var result = new PositionNED(positionNorth, positionEast, positionDown);
 
-        return result;
-    }
+    //    return result;
+    //}
 
     public PositionLLA ToPositionLLA(PositionLLA positionLLAOrigin)
     {

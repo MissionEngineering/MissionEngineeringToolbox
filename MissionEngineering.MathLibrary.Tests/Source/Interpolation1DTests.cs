@@ -27,7 +27,7 @@ public sealed class Interpolation1DTests
         var y = new double[4];
 
         // Act:
-        var interpolation = new Interpolation1DUniformlySpaced(x, y);
+        var interpolation = new Interpolation1DSampleBefore(x, y);
 
         // Assert:
         Assert.Fail();

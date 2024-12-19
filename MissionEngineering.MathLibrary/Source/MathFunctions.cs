@@ -75,14 +75,14 @@ public static class MathFunctions
         return bankAngleDeg;
     }
 
-    public static double CalculateLoadFactorFromBankAngleDeg(double bankAngleDeg)
-    {
-        var bankAngle = bankAngleDeg.DegreesToRadians();
+    //public static double CalculateLoadFactorFromBankAngleDeg(double bankAngleDeg)
+    //{
+    //    var bankAngle = bankAngleDeg.DegreesToRadians();
 
-        var loadFactor_g = 1 / Cos(bankAngle);
+    //    var loadFactor_g = 1 / Cos(bankAngle);
 
-        return loadFactor_g;
-    }
+    //    return loadFactor_g;
+    //}
 
     public static double CalculateBankAngleFromLoadFactor(double loadFactor_g)
     {

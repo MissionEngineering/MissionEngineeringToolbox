@@ -110,18 +110,8 @@ public class SimdisExporter : ISimdisExporter
         AddLine("");
     }
 
-    public void AddLine(string line, bool isAddNewLine = false)
+    public void AddLine(string line)
     {
         SimdisData.AppendLine(line);
-
-        if (isAddNewLine)
-        {
-            SimdisData.Append(Environment.NewLine);
-        }
-    }
-
-    public void AddLines(string[] lines)
-    {
-        SimdisData.Append(lines);
     }
 }

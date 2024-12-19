@@ -56,15 +56,15 @@ public class DataRecorder : IDataRecorder
         Directory.CreateDirectory(SimulationData.SimulationSettings.OutputFolder);
     }
 
-    public void AddFlightpathStateData(FlightpathStateData flightpathStateData)
-    {
-        SimulationData.FlightpathStateDataAll.Add(flightpathStateData);
-    }
+    //public void AddFlightpathStateData(FlightpathStateData flightpathStateData)
+    //{
+    //    SimulationData.FlightpathStateDataAll.Add(flightpathStateData);
+    //}
 
-    public void AddFlightpathStateData(List<FlightpathStateData> flightpathStateDataList)
-    {
-        SimulationData.FlightpathStateDataAll.AddRange(flightpathStateDataList);
-    }
+    //public void AddFlightpathStateData(List<FlightpathStateData> flightpathStateDataList)
+    //{
+    //    SimulationData.FlightpathStateDataAll.AddRange(flightpathStateDataList);
+    //}
 
     public void CreateFlightpathData()
     {

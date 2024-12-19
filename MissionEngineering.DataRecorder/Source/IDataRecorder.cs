@@ -10,9 +10,9 @@ public interface IDataRecorder
 
     public ISimdisExporter SimdisExporter { get; set; }
 
-    void AddFlightpathStateData(FlightpathStateData flightpathStateData);
+    //void AddFlightpathStateData(FlightpathStateData flightpathStateData);
 
-    void AddFlightpathStateData(List<FlightpathStateData> flightpathStateDataList);
+    //void AddFlightpathStateData(List<FlightpathStateData> flightpathStateDataList);
 
     void Initialise(double time);
 
