@@ -17,14 +17,8 @@ public class LogUtilities
         Log.CloseAndFlush();
     }
 
-    public static void LogInformation(string message, int indentation = 0, params object?[]? propertyValues)
+    public static void LogInformation(string message, params object?[]? propertyValues)
     {
-        if (indentation > 0)
-        {
-            var emptyString = new string(' ', indentation);
-            message = emptyString + message;
-        }
-
         Log.Information(message, propertyValues);
     }
 }

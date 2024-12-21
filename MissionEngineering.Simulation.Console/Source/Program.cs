@@ -1,4 +1,5 @@
-﻿using MissionEngineering.Core;
+﻿using System.Runtime.CompilerServices;
+using MissionEngineering.Core;
 using MissionEngineering.Scenario;
 using MissionEngineering.Simulation.Core;
 
@@ -59,7 +60,15 @@ public class Program
     {
         if (string.IsNullOrEmpty(SimulationSettingsFileName))
         {
-            SimulationSettings = SimulationSettingsFactory.SimulationSettings_Test_1_Single();
+            if (NumberOfRuns == 1)
+            {
+                SimulationSettings = SimulationSettingsFactory.SimulationSettings_Test_1_Single();
+            }
+            else
+            {
+                SimulationSettings = SimulationSettingsFactory.SimulationSettings_Test_1_Multiple();
+            }
+
             return;
         }
 

@@ -9,7 +9,7 @@ namespace MissionEngineering.SimdisLibrary.Tests
         public void GenerateSimdisData_WithSimulationData_ExpectSuccess()
         {
             // Arrange:
-            var simulationSettings = SimulationSettingsFactory.SimulationSettings_Test_1_Single();
+            var simulationSettings = SimulationSettingsFactory.SimulationSettings_Test_1_Multiple();
             var scenarioSettings = ScenarioSettingsFactory.ScenarioSettings_Test_1();
             var flightpathDemands = FlightpathDemandFactory.FlightpathDemands_Test_1();
 
