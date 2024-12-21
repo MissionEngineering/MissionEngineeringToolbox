@@ -1,4 +1,6 @@
-﻿namespace MissionEngineering.Simulation.Tests;
+﻿using MissionEngineering.Simulation.Core;
+
+namespace MissionEngineering.Simulation.Tests;
 
 [TestClass]
 public sealed class SimulationTests
@@ -17,8 +19,7 @@ public sealed class SimulationTests
         simulation.ScenarioSettings = scenarioSettings;
         simulation.FlightpathDemandList.FlightpathDemands = flightpathDemands;
         simulation.Scenario.FlightpathDemandList.FlightpathDemands = flightpathDemands;
-
-        simulation.DataRecorder.SimulationData.SimulationSettings.IsWriteData = false;
+        simulation.DataRecorder.SimulationData.SimulationSettings = simulationSettings;
 
         var expectedListLength = 1901;
 
