@@ -4,6 +4,6 @@
     {
         IDateTimeOrigin DateTimeOrigin { get; set; }
 
-        TimeStamp GetTimeStamp(double time);
+        SimulationTimeStamp GetTimeStamp(double time);
     }
 }

@@ -1,5 +1,4 @@
-﻿using MissionEngineering.Scenario;
-using MissionEngineering.SimdisLibrary;
+﻿using MissionEngineering.SimdisLibrary;
 using MissionEngineering.Simulation;
 
 namespace MissionEngineering.DataRecorder;

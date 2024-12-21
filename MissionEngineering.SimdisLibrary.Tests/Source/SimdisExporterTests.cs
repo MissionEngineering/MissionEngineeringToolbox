@@ -1,7 +1,5 @@
-﻿using System.Text;
-using MissionEngineering.Core;
-using MissionEngineering.Scenario;
-using MissionEngineering.ScenarioGenerator;
+﻿using MissionEngineering.ScenarioGenerator;
+using MissionEngineering.Simulation;
 
 namespace MissionEngineering.SimdisLibrary.Tests
 {
@@ -12,18 +10,20 @@ namespace MissionEngineering.SimdisLibrary.Tests
         public void GenerateSimdisData_WithSimulationData_ExpectSuccess()
         {
             // Arrange:
+            var simulationSettings = SimulationSettingsFactory.SimulationSettings_Test_1();
             var scenarioSettings = ScenarioSettingsFactory.ScenarioSettings_Test_1();
 
-            var scenarioGenerator = ScenarioBuilder.CreateScenarioGenerator();
+            var simulation = SimulationBuilder.CreateSimulation();
 
-            scenarioGenerator.ScenarioSettings = scenarioSettings;
+            simulation.SimulationSettings = simulationSettings;
+            simulation.ScenarioSettings = scenarioSettings;
 
             //
-            scenarioGenerator.Run();
+            simulation.Run();
 
-            scenarioGenerator.DataRecorder.SimdisExporter.GenerateSimdisData();
+            simulation.DataRecorder.SimdisExporter.GenerateSimdisData();
 
-            var simdisString = scenarioGenerator.DataRecorder.SimdisExporter.SimdisData.ToString();
+            var simdisString = simulation.DataRecorder.SimdisExporter.SimdisData.ToString();
 
             //
             Assert.IsTrue(simdisString.Length > 100);

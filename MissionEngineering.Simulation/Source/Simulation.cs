@@ -2,13 +2,14 @@
 using MissionEngineering.DataRecorder;
 using MissionEngineering.MathLibrary;
 using MissionEngineering.Scenario;
-using MissionEngineering.Simulation;
 using MissionEngineering.Simulation.Core;
 
-namespace MissionEngineering.ScenarioGenerator;
+namespace MissionEngineering.Simulation;
 
-public class ScenarioGenerator : IScenarioGenerator
+public class Simulation : ISimulation
 {
+    public SimulationSettings SimulationSettings { get; set; }
+
     public ScenarioSettings ScenarioSettings { get; set; }
 
     public ILLAOrigin LLAOrigin { get; set; }
@@ -19,8 +20,10 @@ public class ScenarioGenerator : IScenarioGenerator
 
     public IDataRecorder DataRecorder { get; set; }
 
-    public ScenarioGenerator(IScenario scenario, ILLAOrigin llaOrigin, ISimulationClock simulationClock, IDataRecorder dataRecorder)
+    public Simulation(SimulationSettings simulationSettings, ScenarioSettings scenarioSettings, IScenario scenario, ILLAOrigin llaOrigin, ISimulationClock simulationClock, IDataRecorder dataRecorder)
     {
+        SimulationSettings = simulationSettings;
+        ScenarioSettings = scenarioSettings;
         Scenario = scenario;
         LLAOrigin = llaOrigin;
         SimulationClock = simulationClock;

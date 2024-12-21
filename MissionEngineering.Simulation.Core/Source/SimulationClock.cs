@@ -9,11 +9,11 @@ public class SimulationClock : ISimulationClock
         DateTimeOrigin = dateTimeOrigin;
     }
 
-    public TimeStamp GetTimeStamp(double time)
+    public SimulationTimeStamp GetTimeStamp(double time)
     {
         var dateTime = DateTimeOrigin.DateTime.AddSeconds(time);
 
-        var timeStamp = new TimeStamp(time, dateTime);
+        var timeStamp = new SimulationTimeStamp(time, dateTime);
 
         return timeStamp;
     }

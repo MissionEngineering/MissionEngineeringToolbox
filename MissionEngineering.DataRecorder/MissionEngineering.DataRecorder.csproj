@@ -12,7 +12,7 @@
     <ProjectReference Include="..\MissionEngineering.Scenario\MissionEngineering.Scenario.csproj" />
     <ProjectReference Include="..\MissionEngineering.SimdisLibrary\MissionEngineering.SimdisLibrary.csproj" />
     <ProjectReference Include="..\MissionEngineering.Simulation.Core\MissionEngineering.Simulation.Core.csproj" />
-    <ProjectReference Include="..\MissionEngineering.Simulation\MissionEngineering.Simulation.csproj" />
+    <ProjectReference Include="..\MissionEngineering.Simulation.Data\MissionEngineering.Simulation.Data.csproj" />
   </ItemGroup>
 
 </Project>

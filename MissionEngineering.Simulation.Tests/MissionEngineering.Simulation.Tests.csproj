@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -8,17 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.msbuild" Version="6.0.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
     <PackageReference Include="MSTest" Version="3.6.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MissionEngineering.Core\MissionEngineering.Core.csproj" />
-    <ProjectReference Include="..\MissionEngineering.ScenarioGenerator\MissionEngineering.ScenarioGenerator.csproj" />
+    <ProjectReference Include="..\MissionEngineering.Simulation\MissionEngineering.Simulation.csproj" />
   </ItemGroup>
 
   <ItemGroup>

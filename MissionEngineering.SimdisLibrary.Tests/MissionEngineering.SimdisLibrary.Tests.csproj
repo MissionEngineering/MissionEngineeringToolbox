@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MissionEngineering.ScenarioGenerator\MissionEngineering.ScenarioGenerator.csproj" />
+    <ProjectReference Include="..\MissionEngineering.Simulation\MissionEngineering.Simulation.csproj" />
   </ItemGroup>
 
   <ItemGroup>

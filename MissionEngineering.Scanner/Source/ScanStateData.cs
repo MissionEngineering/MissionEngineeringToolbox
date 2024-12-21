@@ -8,7 +8,7 @@ public record ScanStateData
 
     public string ScannerName { get; set; }
 
-    public TimeStamp TimeStamp { get; init; }
+    public SimulationTimeStamp TimeStamp { get; init; }
 
     public int ScanPatternModificationId { get; set; }
 

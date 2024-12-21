@@ -10,7 +10,7 @@ public record FlightpathStateData
 
     public required string FlightpathName { get; init; }
 
-    public required TimeStamp TimeStamp { get; init; }
+    public required SimulationTimeStamp TimeStamp { get; init; }
 
     public required PositionLLA PositionLLA { get; init; }
 
@@ -33,7 +33,7 @@ public record FlightpathStateData
     {
         FlightpathId = 0;
         FlightpathName = "";
-        TimeStamp = new TimeStamp();
+        TimeStamp = new SimulationTimeStamp();
         PositionLLA = new PositionLLA(0.0, 0.0, 0.0);
         PositionNED = new PositionNED(0.0, 0.0, 0.0);
         VelocityNED = new VelocityNED(0.0, 0.0, 0.0);
