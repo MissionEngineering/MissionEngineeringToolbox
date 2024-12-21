@@ -17,6 +17,8 @@ public interface ISimulation
 
     ScenarioSettings ScenarioSettings { get; set; }
 
+    IFlightpathDemandList FlightpathDemandList { get; set; }
+
     ISimulationClock SimulationClock { get; set; }
 
     void Run();

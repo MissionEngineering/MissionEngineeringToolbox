@@ -2,7 +2,7 @@
 using MissionEngineering.Scenario;
 using MissionEngineering.Simulation.Core;
 
-namespace MissionEngineering.ScenarioGenerator;
+namespace MissionEngineering.Simulation;
 
 public static class ScenarioSettingsFactory
 {

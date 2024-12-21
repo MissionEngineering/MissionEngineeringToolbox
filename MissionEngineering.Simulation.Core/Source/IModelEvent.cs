@@ -1,6 +1,5 @@
-﻿namespace MissionEngineering.Simulation.Core
+﻿namespace MissionEngineering.Simulation.Core;
+
+public interface IModelEvent
 {
-    public interface IModelEvent
-    {
-    }
 }

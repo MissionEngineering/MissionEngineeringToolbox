@@ -1,7 +1,7 @@
 ﻿using MissionEngineering.MathLibrary;
 using MissionEngineering.Scenario;
 
-namespace MissionEngineering.ScenarioGenerator;
+namespace MissionEngineering.Simulation;
 
 public static class FlightpathSettingsFactory
 {

@@ -11,6 +11,8 @@ public interface ISimulationHarness
 
     ScenarioSettings ScenarioSettings { get; set; }
 
+    IFlightpathDemandList FlightpathDemandList { get; set; }
+
     ISimulation Simulation { get; set; }
 
     void Run();

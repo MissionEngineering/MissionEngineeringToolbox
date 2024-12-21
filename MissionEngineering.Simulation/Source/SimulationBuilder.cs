@@ -6,7 +6,7 @@ using MissionEngineering.SimdisLibrary;
 using MissionEngineering.Simulation;
 using MissionEngineering.Simulation.Core;
 
-namespace MissionEngineering.ScenarioGenerator;
+namespace MissionEngineering.Simulation;
 
 public static class SimulationBuilder
 {
@@ -16,7 +16,7 @@ public static class SimulationBuilder
 
         services.AddScoped<ISimulationHarness, SimulationHarness>();
         services.AddScoped<SimulationHarnessSettings, SimulationHarnessSettings>();
-        services.AddScoped<ISimulation, Simulation.Simulation>();
+        services.AddScoped<ISimulation, Simulation>();
         services.AddScoped<IDateTimeOrigin, DateTimeOrigin>();
         services.AddScoped<ILLAOrigin, LLAOrigin>();
         services.AddScoped<ISimulationClock, SimulationClock>();
@@ -26,6 +26,7 @@ public static class SimulationBuilder
         services.AddScoped<SimulationSettings, SimulationSettings>();
         services.AddScoped<SimulationData, SimulationData>();
         services.AddScoped<ISimdisExporter, SimdisExporter>();
+        services.AddScoped<IFlightpathDemandList, FlightpathDemandList>();
 
         using var serviceProvider = services.BuildServiceProvider();
 
@@ -38,7 +39,7 @@ public static class SimulationBuilder
     {
         var services = new ServiceCollection();
 
-        services.AddScoped<ISimulation, Simulation.Simulation>();
+        services.AddScoped<ISimulation, Simulation>();
         services.AddScoped<IDateTimeOrigin, DateTimeOrigin>();
         services.AddScoped<ILLAOrigin, LLAOrigin>();
         services.AddScoped<ISimulationClock, SimulationClock>();
@@ -48,6 +49,7 @@ public static class SimulationBuilder
         services.AddScoped<SimulationSettings, SimulationSettings>();
         services.AddScoped<SimulationData, SimulationData>();
         services.AddScoped<ISimdisExporter, SimdisExporter>();
+        services.AddScoped<IFlightpathDemandList, FlightpathDemandList>();
 
         using var serviceProvider = services.BuildServiceProvider();
 

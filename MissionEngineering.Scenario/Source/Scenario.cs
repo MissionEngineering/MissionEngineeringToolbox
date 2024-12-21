@@ -11,22 +11,27 @@ public class Scenario : IScenario, IExecutableModel
 
     public ILLAOrigin LLAOrigin { get; set; }
 
+    public IFlightpathDemandList FlightpathDemandList { get; set; }
+
     public List<Flightpath> FlightpathList { get; set; }
+
+    public Dictionary<int, Flightpath> FlightpathDictionary { get; set; }
 
     public int NumberOfFlightpaths => ScenarioSettings.FlightpathSettingsList.Count;
 
-    public Scenario(ScenarioSettings scenarioSettings, ISimulationClock simulationClock, ILLAOrigin llaOrigin)
+    public Scenario(ScenarioSettings scenarioSettings, ISimulationClock simulationClock, ILLAOrigin llaOrigin, IFlightpathDemandList flightpathDemandList)
     {
         ScenarioSettings = scenarioSettings;
         SimulationClock = simulationClock;
         LLAOrigin = llaOrigin;
-
-        FlightpathList = new List<Flightpath>();
+        FlightpathDemandList = flightpathDemandList;
     }
 
     public void Initialise(double time)
     {
         FlightpathList = new List<Flightpath>(NumberOfFlightpaths);
+
+        FlightpathDictionary = new Dictionary<int, Flightpath>();
 
         foreach (var flightpathSettings in ScenarioSettings.FlightpathSettingsList)
         {
@@ -42,20 +47,17 @@ public class Scenario : IScenario, IExecutableModel
             flightpath.Initialise(time);
 
             FlightpathList.Add(flightpath);
+
+            FlightpathDictionary.Add(flightpath.FlightpathSettings.FlightpathId, flightpath);
         }
     }
 
     public void Update(double time)
     {
+        ProcessFlightpathDemands(time);
+
         foreach (var flightpath in FlightpathList)
         {
-            var flightpathDemand = GetFlightpathDemand(flightpath, time);
-
-            if (flightpathDemand != null)
-            {
-                flightpath.SetFlightpathDemand(flightpathDemand);
-            }
-
             flightpath.Update(time);
         }
     }
@@ -68,36 +70,15 @@ public class Scenario : IScenario, IExecutableModel
         }
     }
 
-    public FlightpathDemand GetFlightpathDemand(Flightpath flightpath, double time)
+    public void ProcessFlightpathDemands(double time)
     {
-        FlightpathDemand flightpathDemand = null;
+        var flightpathDemands = FlightpathDemandList.GetFlightpathDemands(time);
 
-        if (time > 20.0)
+        foreach (var flightpathDemand in flightpathDemands)
         {
-            flightpathDemand = new FlightpathDemand()
-            {
-                FlightpathDemandFlightpathId = flightpath.FlightpathSettings.FlightpathId,
-                FlightpathDemandModificationId = 1,
-                FlightpathDemandTime = time,
-                HeadingAngleDemandDeg = 45.0,
-                TotalSpeedDemand = 300.0,
-                AltitudeDemand = 9000.0
-            };
-        }
+            var flightpath = FlightpathDictionary[flightpathDemand.FlightpathDemandFlightpathId];
 
-        if (time > 120.0)
-        {
-            flightpathDemand = new FlightpathDemand()
-            {
-                FlightpathDemandFlightpathId = flightpath.FlightpathSettings.FlightpathId,
-                FlightpathDemandModificationId = 2,
-                FlightpathDemandTime = time,
-                HeadingAngleDemandDeg = -135,
-                TotalSpeedDemand = 200.0,
-                AltitudeDemand = 6000.0
-            };
+            flightpath.SetFlightpathDemand(flightpathDemand);
         }
-
-        return flightpathDemand;
     }
 }

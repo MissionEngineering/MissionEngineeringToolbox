@@ -12,6 +12,8 @@ public class Simulation : ISimulation
 
     public ScenarioSettings ScenarioSettings { get; set; }
 
+    public IFlightpathDemandList FlightpathDemandList { get; set; }
+
     public ILLAOrigin LLAOrigin { get; set; }
 
     public ISimulationClock SimulationClock { get; set; }
@@ -24,7 +26,7 @@ public class Simulation : ISimulation
 
     private int displayCount;
 
-    public Simulation(SimulationSettings simulationSettings, ScenarioSettings scenarioSettings, IScenario scenario, ILLAOrigin llaOrigin, ISimulationClock simulationClock, IDataRecorder dataRecorder)
+    public Simulation(SimulationSettings simulationSettings, ScenarioSettings scenarioSettings, IScenario scenario, ILLAOrigin llaOrigin, ISimulationClock simulationClock, IDataRecorder dataRecorder, IFlightpathDemandList flightpathDemandList)
     {
         SimulationSettings = simulationSettings;
         ScenarioSettings = scenarioSettings;
@@ -32,6 +34,7 @@ public class Simulation : ISimulation
         LLAOrigin = llaOrigin;
         SimulationClock = simulationClock;
         DataRecorder = dataRecorder;
+        FlightpathDemandList = flightpathDemandList;
     }
 
     public void Run()
@@ -89,11 +92,13 @@ public class Simulation : ISimulation
 
         var simulationSettingsString = SimulationSettings.ConvertToJsonString();
         var scenarioSettingsString = ScenarioSettings.ConvertToJsonString();
+        var flightpathDemandString = FlightpathDemandList.FlightpathDemands.ConvertToJsonString();
 
         nextDisplayTime = ScenarioSettings.SimulationClockSettings.TimeStart;
 
         LogUtilities.LogInformation($"Simulation Settings {Environment.NewLine} {simulationSettingsString}");
         LogUtilities.LogInformation($"Scenario Settings {Environment.NewLine} {scenarioSettingsString}");
+        LogUtilities.LogInformation($"Flightpath Demands {Environment.NewLine} {flightpathDemandString}");
 
         LogUtilities.LogInformation("Initialise Finished.");
         LogUtilities.LogInformation("");

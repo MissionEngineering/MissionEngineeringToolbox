@@ -6,6 +6,8 @@ public interface IScenario
 
     List<Flightpath> FlightpathList { get; set; }
 
+    IFlightpathDemandList FlightpathDemandList { get; set; }
+
     int NumberOfFlightpaths { get; }
 
     void Initialise(double time);
