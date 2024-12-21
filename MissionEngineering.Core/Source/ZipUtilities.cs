@@ -4,15 +4,8 @@ namespace MissionEngineering.Core;
 
 public static class ZipUtilities
 {
-    public static bool IsUseMock = false;
-
     public static void ZipDirectory(string folderPath, string zipFileName, bool isCloseLog = false)
     {
-        if (IsUseMock)
-        {
-            return;
-        }
-
         LogUtilities.LogInformation($"Writing Zip  File : {zipFileName}");
 
         var tempPath = Path.GetTempPath();

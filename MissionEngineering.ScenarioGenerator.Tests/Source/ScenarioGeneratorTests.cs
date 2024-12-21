@@ -9,13 +9,13 @@ public sealed class ScenarioGeneratorTests
     public void Run_WithValidData_ExpectSuccess()
     {
         // Arrange:
-        MockUtilities.SetMock(false);
-
         var scenarioSettings = ScenarioSettingsFactory.ScenarioSettings_Test_1();
 
         var scenarioGenerator = ScenarioBuilder.CreateScenarioGenerator();
 
         scenarioGenerator.ScenarioSettings = scenarioSettings;
+
+        scenarioGenerator.DataRecorder.SimulationData.SimulationSettings.IsWriteData = false;
 
         var expectedListLength = 1901;
 

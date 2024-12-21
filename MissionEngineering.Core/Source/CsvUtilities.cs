@@ -6,15 +6,8 @@ namespace MissionEngineering.Core;
 
 public static class CsvUtilities
 {
-    public static bool IsUseMock = false;
-
     public static void WriteToCsvFile<T>(this IEnumerable<T> records, string fileName)
     {
-        if (IsUseMock)
-        {
-            return;
-        }
-
         LogUtilities.LogInformation($"Writing Csv  File : {fileName}");
 
         using var writer = new StreamWriter(fileName);

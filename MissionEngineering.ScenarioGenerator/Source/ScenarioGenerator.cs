@@ -107,6 +107,11 @@ public class ScenarioGenerator : IScenarioGenerator
 
     public void CreateZipFile()
     {
+        if (!DataRecorder.SimulationData.SimulationSettings.IsWriteData)
+        {
+            return;
+        }
+
         var zipFileName = $"{DataRecorder.SimulationData.SimulationSettings.SimulationName}.zip";
 
         var zipFileNameFull = DataRecorder.SimulationData.SimulationSettings.GetFileNameFull(zipFileName);

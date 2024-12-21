@@ -12,8 +12,6 @@ namespace MissionEngineering.SimdisLibrary.Tests
         public void GenerateSimdisData_WithSimulationData_ExpectSuccess()
         {
             // Arrange:
-            MockUtilities.SetMock(true);
-
             var scenarioSettings = ScenarioSettingsFactory.ScenarioSettings_Test_1();
 
             var scenarioGenerator = ScenarioBuilder.CreateScenarioGenerator();
