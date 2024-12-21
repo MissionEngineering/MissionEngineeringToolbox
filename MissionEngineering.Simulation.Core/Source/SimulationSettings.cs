@@ -24,14 +24,6 @@ public class SimulationSettings
 
     public SimulationSettings()
     {
-        SimulationName = "Simulation_1";
-        RunNumber = 1;
-        DateTime = DateTime.Now;
-        IsWriteData = true;
-        IsAddTimeStamp = true;
-        IsAddRunNumber = true;
-        IsCreateZipFile = true;
-        OutputFolderBase = @"C:\Temp\MissionEngineeringToolbox\";
     }
 
     public string GetOutputFolder()

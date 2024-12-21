@@ -36,7 +36,8 @@ public class Simulation : ISimulation
 
     public void Run()
     {
-        LogUtilities.LogInformation("Simulation Started...");
+        LogUtilities.LogInformation("");
+        LogUtilities.LogInformation($"Run Number {SimulationSettings.RunNumber} Started...");
         LogUtilities.LogInformation("");
 
         var clockSettings = ScenarioSettings.SimulationClockSettings;
@@ -45,7 +46,7 @@ public class Simulation : ISimulation
 
         Initialise(time);
 
-        LogUtilities.LogInformation("Running Started...");
+        LogUtilities.LogInformation("Run Started...");
         LogUtilities.LogInformation("");
 
         while (time <= clockSettings.TimeEnd)
@@ -58,12 +59,12 @@ public class Simulation : ISimulation
         }
 
         LogUtilities.LogInformation("");
-        LogUtilities.LogInformation("Running Finished.");
+        LogUtilities.LogInformation("Run Finished.");
         LogUtilities.LogInformation("");
 
         Finalise(time);
 
-        LogUtilities.LogInformation("Simulation Finished.");
+        LogUtilities.LogInformation($"Run Number {SimulationSettings.RunNumber} Finished.");
         LogUtilities.LogInformation("");
 
         CreateZipFile();

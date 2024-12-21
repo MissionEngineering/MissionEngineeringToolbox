@@ -11,21 +11,25 @@ public class Program
 
     public static string ScenarioSettingsFileName { get; set; }
 
+    public static int NumberOfRuns {  get; set; }
+
     public static SimulationSettings SimulationSettings { get; set; }
 
     public static ScenarioSettings ScenarioSettings { get; set; }
 
-    public static ISimulation Simulation { get; set; }
+    public static ISimulationHarness SimulationHarness { get; set; }
 
     /// <summary>
-    /// Scenario Generator.
+    /// Simulation Console Runner.
     /// </summary>
     /// <param name="simulationSettingsFileName">Simulation Settings File Name</param>
     /// <param name="scenarioSettingsFileName">Scenario Settings File Name</param>
-    public static void Main(string simulationSettingsFileName, string scenarioSettingsFileName)
+    /// <param name="numberOfRuns">Number Of Runs</param>
+    public static void Main(string simulationSettingsFileName, string scenarioSettingsFileName, int numberOfRuns = 10)
     {
         SimulationSettingsFileName = simulationSettingsFileName;
         ScenarioSettingsFileName = scenarioSettingsFileName;
+        NumberOfRuns = numberOfRuns;
 
         Run();
     }
@@ -35,14 +39,13 @@ public class Program
         GenerateSimulationSettings();
         GenerateScenarioSettings();
 
-        Simulation = SimulationBuilder.CreateSimulation();
+        SimulationHarness = SimulationBuilder.CreateSimulationHarness();
 
-        Simulation.SimulationSettings = SimulationSettings;
-        Simulation.ScenarioSettings = ScenarioSettings;
+        SimulationHarness.SimulationSettings = SimulationSettings;
+        SimulationHarness.ScenarioSettings = ScenarioSettings;
+        SimulationHarness.SimulationHarnessSettings.NumberOfRuns = NumberOfRuns;
 
-        LogUtilities.CreateLogger(Simulation.DataRecorder.SimulationData.SimulationSettings.LogFileName);
-
-        Simulation.Run();
+        SimulationHarness.Run();
     }
 
     private static void GenerateSimulationSettings()
