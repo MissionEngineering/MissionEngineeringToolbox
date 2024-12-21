@@ -7,8 +7,6 @@ public class Program
 {
     public static string ScenarioSettingsFileName { get; set; }
 
-    public static string OutputPath { get; set; }
-
     public static ScenarioSettings ScenarioSettings { get; set; }
 
     public static IScenarioGenerator ScenarioGenerator { get; set; }
@@ -17,11 +15,9 @@ public class Program
     /// Scenario Generator.
     /// </summary>
     /// <param name="scenarioSettingsFileName">Scenario Settings File Name</param>
-    /// <param name="outputPath">Output Path</param>
-    public static void Main(string scenarioSettingsFileName = "", string outputPath = @"c:\temp\MissionEngineeringToolbox")
+    public static void Main(string scenarioSettingsFileName = "")
     {
         ScenarioSettingsFileName = scenarioSettingsFileName;
-        OutputPath = outputPath;
 
         Run();
     }
@@ -33,6 +29,8 @@ public class Program
         ScenarioGenerator = ScenarioBuilder.CreateScenarioGenerator();
 
         ScenarioGenerator.ScenarioSettings = ScenarioSettings;
+
+        LogUtilities.CreateLogger(ScenarioGenerator.DataRecorder.SimulationData.SimulationSettings.LogFileName);
 
         ScenarioGenerator.Run();
     }

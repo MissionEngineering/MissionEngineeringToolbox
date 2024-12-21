@@ -42,8 +42,6 @@ public class DataRecorder : IDataRecorder
         WriteJsonData();
         WriteCsvData();
         WriteSimdisData();
-
-        ProduceZipFile();
     }
 
     public void CreateOutputFolder()
@@ -94,15 +92,6 @@ public class DataRecorder : IDataRecorder
     {
         SimdisExporter.GenerateSimdisData();
         SimdisExporter.WriteSimdisData();
-    }
-
-    public void ProduceZipFile()
-    {
-        var zipFileName = $"{SimulationData.SimulationSettings.SimulationName}.zip";
-
-        var zipFileNameFull = SimulationData.SimulationSettings.GetFileNameFull(zipFileName);
-
-        ZipUtilities.ZipDirectory(SimulationData.SimulationSettings.OutputFolder, zipFileNameFull);
     }
 
     public void WriteSimulationSettingsToJson()

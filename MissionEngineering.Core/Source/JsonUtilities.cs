@@ -31,6 +31,8 @@ public static class JsonUtilities
             return;
         }
 
+        LogUtilities.LogInformation($"Writing Json File : {fileName}");
+
         string jsonString = obj.ConvertToJsonString();
 
         File.WriteAllText(fileName, jsonString);
@@ -42,6 +44,8 @@ public static class JsonUtilities
         {
             return default;
         }
+
+        LogUtilities.LogInformation($"Reading  Json File : {fileName}");
 
         var jsonString = File.ReadAllText(fileName);
 

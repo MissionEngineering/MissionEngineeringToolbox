@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using MissionEngineering.Core;
 using MissionEngineering.Scenario;
 using MissionEngineering.Simulation;
 
@@ -33,6 +34,8 @@ public class SimdisExporter : ISimdisExporter
         var fileName = $"{SimulationData.SimulationSettings.SimulationName}.asi";
 
         var fileNameFull = SimulationData.SimulationSettings.GetFileNameFull(fileName);
+
+        LogUtilities.LogInformation($"Writing Asi  File : {fileNameFull}");
 
         var strings = SimdisData.ToString();
 

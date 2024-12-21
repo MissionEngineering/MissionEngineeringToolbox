@@ -15,6 +15,8 @@ public static class CsvUtilities
             return;
         }
 
+        LogUtilities.LogInformation($"Writing Csv  File : {fileName}");
+
         using var writer = new StreamWriter(fileName);
 
         using var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
