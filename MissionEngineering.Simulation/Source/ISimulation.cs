@@ -19,15 +19,15 @@ public interface ISimulation
 
     ISimulationClock SimulationClock { get; set; }
 
-    void CreateZipFile();
+    void Run();
+
+    void Initialise(double time);
+
+    void Update(double time);
 
     void Finalise(double time);
 
     List<FlightpathStateData> GenerateFlightpathDataAll();
 
-    void Initialise(double time);
-
-    void Run();
-
-    void Update(double time);
+    void CreateZipFile();
 }

@@ -20,6 +20,10 @@ public class Simulation : ISimulation
 
     public IDataRecorder DataRecorder { get; set; }
 
+    private double nextDisplayTime;
+
+    private int displayCount;
+
     public Simulation(SimulationSettings simulationSettings, ScenarioSettings scenarioSettings, IScenario scenario, ILLAOrigin llaOrigin, ISimulationClock simulationClock, IDataRecorder dataRecorder)
     {
         SimulationSettings = simulationSettings;
@@ -32,7 +36,7 @@ public class Simulation : ISimulation
 
     public void Run()
     {
-        LogUtilities.LogInformation("Starting Simulation...");
+        LogUtilities.LogInformation("Simulation Started...");
         LogUtilities.LogInformation("");
 
         var clockSettings = ScenarioSettings.SimulationClockSettings;
@@ -41,26 +45,33 @@ public class Simulation : ISimulation
 
         Initialise(time);
 
+        LogUtilities.LogInformation("Running Started...");
+        LogUtilities.LogInformation("");
+
         while (time <= clockSettings.TimeEnd)
         {
+            ShowProgress(time);
+
             Update(time);
 
             time += clockSettings.TimeStep;
         }
 
+        LogUtilities.LogInformation("");
+        LogUtilities.LogInformation("Running Finished.");
+        LogUtilities.LogInformation("");
+
         Finalise(time);
 
-        LogUtilities.LogInformation("");
         LogUtilities.LogInformation("Simulation Finished.");
         LogUtilities.LogInformation("");
 
-        LogUtilities.CloseLog();
         CreateZipFile();
     }
 
     public void Initialise(double time)
     {
-        LogUtilities.LogInformation("Initialise...");
+        LogUtilities.LogInformation("Initialise Started...");
         LogUtilities.LogInformation("");
 
         LLAOrigin.PositionLLA = ScenarioSettings.LLAOrigin;
@@ -75,11 +86,16 @@ public class Simulation : ISimulation
 
         DataRecorder.Initialise(time);
 
-        var simulationSettingsString = DataRecorder.SimulationData.SimulationSettings.ConvertToJsonString();
-        var scenarioSettingsString = DataRecorder.SimulationData.ScenarioSettings.ConvertToJsonString();
+        var simulationSettingsString = SimulationSettings.ConvertToJsonString();
+        var scenarioSettingsString = ScenarioSettings.ConvertToJsonString();
+
+        nextDisplayTime = ScenarioSettings.SimulationClockSettings.TimeStart;
 
         LogUtilities.LogInformation($"Simulation Settings {Environment.NewLine} {simulationSettingsString}");
         LogUtilities.LogInformation($"Scenario Settings {Environment.NewLine} {scenarioSettingsString}");
+
+        LogUtilities.LogInformation("Initialise Finished.");
+        LogUtilities.LogInformation("");
     }
 
     public void Update(double time)
@@ -89,7 +105,7 @@ public class Simulation : ISimulation
 
     public void Finalise(double time)
     {
-        LogUtilities.LogInformation("Finalise...");
+        LogUtilities.LogInformation("Finalise Started...");
         LogUtilities.LogInformation("");
 
         Scenario.Finalise(time);
@@ -99,6 +115,23 @@ public class Simulation : ISimulation
         DataRecorder.SimulationData.FlightpathStateDataAll = flightpathDataAll;
 
         DataRecorder.Finalise(time);
+
+        LogUtilities.LogInformation("");
+        LogUtilities.LogInformation("Finalise Finished.");
+        LogUtilities.LogInformation("");
+    }
+
+    public void ShowProgress(double time)
+    {
+        var isDisplayTime = (time >= nextDisplayTime);
+
+        if (isDisplayTime)
+        {
+            LogUtilities.LogInformation($"Time = {nextDisplayTime:000}s");
+
+            displayCount++;
+            nextDisplayTime = ScenarioSettings.SimulationClockSettings.TimeStart + displayCount * 5.0;
+        }
     }
 
     public List<FlightpathStateData> GenerateFlightpathDataAll()
