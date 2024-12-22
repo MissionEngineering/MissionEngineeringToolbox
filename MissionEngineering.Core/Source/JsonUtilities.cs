@@ -4,20 +4,18 @@ namespace MissionEngineering.Core;
 
 public static class JsonUtilities
 {
+    public static readonly JsonSerializerOptions JsonSerializerOptions = new() { WriteIndented = true };
+
     public static string ConvertToJsonString<T>(this T obj)
     {
-        var options = new JsonSerializerOptions { WriteIndented = true };
-
-        string jsonString = JsonSerializer.Serialize(obj, options);
+        string jsonString = JsonSerializer.Serialize(obj, JsonSerializerOptions);
 
         return jsonString;
     }
 
     public static T ConvertFromJsonString<T>(string jsonString)
     {
-        var options = new JsonSerializerOptions { WriteIndented = true };
-
-        T obj = JsonSerializer.Deserialize<T>(jsonString, options);
+        T obj = JsonSerializer.Deserialize<T>(jsonString, JsonSerializerOptions);
 
         return obj;
     }

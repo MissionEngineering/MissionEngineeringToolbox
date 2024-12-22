@@ -19,8 +19,8 @@ public class DataRecorder : IDataRecorder
 
     public void Initialise(double time)
     {
-        SimulationData.FlightpathStateDataAll = new List<FlightpathStateData>();
-        SimulationData.FlightpathStateDataPerFlightpath = new List<List<FlightpathStateData>>();
+        SimulationData.FlightpathStateDataAll = [];
+        SimulationData.FlightpathStateDataPerFlightpath = [];
     }
 
     public void Finalise(double time)

@@ -96,6 +96,6 @@ public class Program
 
         FlightpathDemands = JsonUtilities.ReadFromJsonFile<List<FlightpathDemand>>(FlightpathDemandFileName);
 
-        FlightpathDemands = FlightpathDemands.OrderBy(s => s.FlightpathDemandFlightpathId).ThenBy(s => s.FlightpathDemandFlightpathId).ToList();
+        FlightpathDemands = [.. FlightpathDemands.OrderBy(s => s.FlightpathDemandFlightpathId).ThenBy(s => s.FlightpathDemandFlightpathId)];
     }
 }

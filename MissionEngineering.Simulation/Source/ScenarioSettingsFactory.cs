@@ -33,7 +33,7 @@ public static class ScenarioSettingsFactory
             ScenarioName = "Scenario_Test_1",
             SimulationClockSettings = simulationClockSettings,
             LLAOrigin = llaOrigin,
-            FlightpathSettingsList = new List<FlightpathSettings> { fs1, fs2 }
+            FlightpathSettingsList = [fs1, fs2]
         };
 
         return scenarioSettings;

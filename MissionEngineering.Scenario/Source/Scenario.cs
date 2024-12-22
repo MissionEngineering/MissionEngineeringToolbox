@@ -31,7 +31,7 @@ public class Scenario : IScenario, IExecutableModel
     {
         FlightpathList = new List<Flightpath>(NumberOfFlightpaths);
 
-        FlightpathDictionary = new Dictionary<int, Flightpath>();
+        FlightpathDictionary = [];
 
         foreach (var flightpathSettings in ScenarioSettings.FlightpathSettingsList)
         {
