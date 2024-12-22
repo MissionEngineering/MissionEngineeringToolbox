@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using MissionEngineering.Core;
+﻿using MissionEngineering.Core;
 using MissionEngineering.Scenario;
 using MissionEngineering.Simulation.Core;
 

@@ -1,5 +1,4 @@
-﻿
-namespace MissionEngineering.Scenario
+﻿namespace MissionEngineering.Scenario
 {
     public interface IFlightpathDemandList
     {

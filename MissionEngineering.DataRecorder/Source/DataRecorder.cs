@@ -1,5 +1,4 @@
 ﻿using MissionEngineering.Core;
-using MissionEngineering.Scenario;
 using MissionEngineering.SimdisLibrary;
 using MissionEngineering.Simulation;
 

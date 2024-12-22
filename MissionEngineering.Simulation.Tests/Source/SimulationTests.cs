@@ -1,6 +1,4 @@
-﻿using MissionEngineering.Simulation.Core;
-
-namespace MissionEngineering.Simulation.Tests;
+﻿namespace MissionEngineering.Simulation.Tests;
 
 [TestClass]
 public sealed class SimulationTests

@@ -3,7 +3,6 @@ using MissionEngineering.DataRecorder;
 using MissionEngineering.MathLibrary;
 using MissionEngineering.Scenario;
 using MissionEngineering.SimdisLibrary;
-using MissionEngineering.Simulation;
 using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.Simulation;
