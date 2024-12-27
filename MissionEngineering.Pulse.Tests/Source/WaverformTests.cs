@@ -21,6 +21,12 @@ public sealed class WaverformTests
         // Act:
 
         // Assert:
-        Assert.IsTrue(true);
+        Assert.AreEqual(9000.0, waveform.RfFrequency_MHz);
+        Assert.AreEqual(33.33333333333333, waveform.RfWavelength_mm, 1.0e-8);
+        Assert.AreEqual(5.0, waveform.PulseCompressionRatio, 1.0e-8);
+        Assert.AreEqual(30.0, waveform.RangeGateWidth);
+        Assert.AreEqual(75.0, waveform.DopplerGateWidth);
+        Assert.AreEqual(1.25, waveform.RangeRateGateWidth);
+        Assert.AreEqual(0.01333333333333333, waveform.DwellTime, 1.0e-8);
     }
 }
