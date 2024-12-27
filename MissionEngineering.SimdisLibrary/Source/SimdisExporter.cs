@@ -84,15 +84,17 @@ public class SimdisExporter : ISimdisExporter
 
     public void CreatePlatformInitialisation(int platformId, FlightpathSettings flightpathSettings)
     {
-        AddLine($"PlatformID          {platformId}");
-        AddLine(@$"PlatformName        {platformId} ""{flightpathSettings.FlightpathName}"" ");
-        AddLine(@$"PlatformType        {platformId} ""aircraft""");
-        AddLine(@$"PlatformIcon        {platformId} ""f-35a_lightning""");
-        AddLine($"PlatformFHN         {platformId} F");
-        AddLine($"PlatformInterpolate {platformId} 1");
+        var platformSettings = flightpathSettings.PlatformSettings;
+
+        AddLine(@$"PlatformID          {platformId}");
+        AddLine(@$"PlatformName        {platformId} ""{flightpathSettings.FlightpathName}""");
+        AddLine(@$"PlatformType        {platformId} ""{platformSettings.PlatformType}""");
+        AddLine(@$"PlatformIcon        {platformId} ""{platformSettings.PlatformIcon}""");
+        AddLine(@$"PlatformFHN         {platformId} {platformSettings.PlatformFHN}");
+        AddLine(@$"PlatformInterpolate {platformId} {platformSettings.PlatformInterpolate}");
         AddLine("");
         AddLine(@$"GenericData         {platformId} ""SIMDIS_DynamicScale"" ""1"" ""0"" ");
-        AddLine(@$"GenericData         {platformId} ""SIMDIS_ScaleLevel"" ""4.0"" ""0"" ");
+        AddLine(@$"GenericData         {platformId} ""SIMDIS_ScaleLevel"" ""{platformSettings.PlatformScaleLevel}"" ""0"" ");
         AddLine("");
     }
 

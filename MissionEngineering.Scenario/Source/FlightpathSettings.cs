@@ -11,4 +11,6 @@ public record FlightpathSettings
     public PositionNED PositionNED { get; init; }
 
     public VelocityNED VelocityNED { get; init; }
+
+    public PlatformSettings PlatformSettings { get; init; }
 }
