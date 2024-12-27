@@ -14,7 +14,7 @@ public static class SimulationSettingsFactory
             IsWriteData = true,
             IsAddTimeStamp = false,
             IsAddRunNumber = false,
-            IsCreateZipFile = true,
+            IsCreateZipFile = false,
             OutputFolderBase = @"C:\Temp\MissionEngineeringToolbox\"
         };
 

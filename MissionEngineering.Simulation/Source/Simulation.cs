@@ -154,6 +154,11 @@ public class Simulation : ISimulation
             return;
         }
 
+        if (!DataRecorder.SimulationData.SimulationSettings.IsCreateZipFile)
+        {
+            return;
+        }
+
         var zipFileName = $"{DataRecorder.SimulationData.SimulationSettings.SimulationName}.zip";
 
         var zipFileNameFull = DataRecorder.SimulationData.SimulationSettings.GetFileNameFull(zipFileName);
