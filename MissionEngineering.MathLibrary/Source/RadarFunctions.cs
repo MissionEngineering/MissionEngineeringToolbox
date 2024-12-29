@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using static MissionEngineering.MathLibrary.PhysicalConstants;
+﻿using static MissionEngineering.MathLibrary.PhysicalConstants;
 
 namespace MissionEngineering.MathLibrary;
 
@@ -56,7 +50,7 @@ public static class RadarFunctions
 
     public static double CalculateRangeFromDelayTimeTwoWay(double delayTime)
     {
-        var range = SpeedOfLight * delayTime / 2.0; 
+        var range = SpeedOfLight * delayTime / 2.0;
 
         return range;
     }

@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MissionEngineering.Scenario;
+﻿namespace MissionEngineering.Scenario;
 
 public record PlatformSettings
 {
-   public string PlatformType {  get; init; }
-    
+    public string PlatformType { get; init; }
+
     public string PlatformIcon { get; init; }
 
     public string PlatformFHN { get; init; }
