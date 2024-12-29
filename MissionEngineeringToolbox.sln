@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Pulse", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Pulse.Tests", "MissionEngineering.Pulse.Tests\MissionEngineering.Pulse.Tests.csproj", "{DD88E70C-AC3A-4194-A40C-8194517CCF0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Ais", "MissionEngineering.Ais\MissionEngineering.Ais.csproj", "{42A69B03-1930-42F0-95E9-B480C6F00EFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{DD88E70C-AC3A-4194-A40C-8194517CCF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD88E70C-AC3A-4194-A40C-8194517CCF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD88E70C-AC3A-4194-A40C-8194517CCF0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42A69B03-1930-42F0-95E9-B480C6F00EFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42A69B03-1930-42F0-95E9-B480C6F00EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42A69B03-1930-42F0-95E9-B480C6F00EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42A69B03-1930-42F0-95E9-B480C6F00EFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
