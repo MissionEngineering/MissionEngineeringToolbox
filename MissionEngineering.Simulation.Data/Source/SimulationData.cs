@@ -1,4 +1,5 @@
-﻿using MissionEngineering.Scenario;
+﻿using MissionEngineering.Scanner;
+using MissionEngineering.Scenario;
 using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.Simulation;
@@ -12,6 +13,8 @@ public class SimulationData
     public List<FlightpathStateData> FlightpathStateDataAll { get; set; }
 
     public List<List<FlightpathStateData>> FlightpathStateDataPerFlightpath { get; set; }
+
+    public List<List<ScanStateData>> ScanStateDataPerScanner { get; set; }
 
     public SimulationData(SimulationSettings simulationSettings, ScenarioSettings scenarioSettings)
     {
