@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Ais", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Radar", "MissionEngineering.Radar\MissionEngineering.Radar.csproj", "{D8C7B68E-BB15-409F-A1A4-E95C9D91F6EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionEngineering.Simulation.Benchmarks.Console", "MissionEngineering.Simulation.Benchmarks.Console\MissionEngineering.Simulation.Benchmarks.Console.csproj", "{7B0ACD9E-C8E5-4533-8E51-10864B58E11A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{D8C7B68E-BB15-409F-A1A4-E95C9D91F6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8C7B68E-BB15-409F-A1A4-E95C9D91F6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8C7B68E-BB15-409F-A1A4-E95C9D91F6EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B0ACD9E-C8E5-4533-8E51-10864B58E11A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B0ACD9E-C8E5-4533-8E51-10864B58E11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B0ACD9E-C8E5-4533-8E51-10864B58E11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B0ACD9E-C8E5-4533-8E51-10864B58E11A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

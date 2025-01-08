@@ -39,7 +39,7 @@ public class Simulation : ISimulation
 
     public void Run()
     {
-        LogUtilities.LogInformation("");
+        LogUtilities.LogInformation("***");
         LogUtilities.LogInformation($"Run Number {SimulationSettings.RunNumber} Started...");
         LogUtilities.LogInformation("");
 
@@ -68,6 +68,7 @@ public class Simulation : ISimulation
         Finalise(time);
 
         LogUtilities.LogInformation($"Run Number {SimulationSettings.RunNumber} Finished.");
+        LogUtilities.LogInformation("***");
         LogUtilities.LogInformation("");
 
         CreateZipFile();
