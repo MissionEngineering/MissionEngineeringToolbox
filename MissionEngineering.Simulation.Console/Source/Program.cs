@@ -4,6 +4,9 @@ using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.Simulation;
 
+/// <summary>
+/// 
+/// </summary>
 public class Program
 {
     public static string SimulationSettingsFileName { get; set; }

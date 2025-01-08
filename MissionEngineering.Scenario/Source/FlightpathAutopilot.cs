@@ -78,7 +78,11 @@ public class FlightpathAutopilot
 
         lateralAcceleration = MathFunctions.LimitWithinRange(-lateralAccelerationMax, lateralAccelerationMax, lateralAcceleration);
 
+        var bankAngleDemandMaxDeg = FlightpathDynamics.BankAngleMaximumDeg;
+
         var bankAngleDemandDeg = SetBankAngleFromLateralAcceleration(lateralAcceleration);
+
+        bankAngleDemandDeg = MathFunctions.LimitWithinRange(-bankAngleDemandMaxDeg, bankAngleDemandMaxDeg, bankAngleDemandDeg);
 
         var bankAngleDeg = FlightpathStateData.Attitude.BankAngleDeg;
 

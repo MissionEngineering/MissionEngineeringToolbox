@@ -35,7 +35,7 @@ public class Scenario : IScenario, IExecutableModel
 
         foreach (var flightpathSettings in ScenarioSettings.FlightpathSettingsList)
         {
-            var flightpathDynamics = new FlightpathDynamics();
+            var flightpathDynamics = flightpathSettings.FlightpathDynamics;
 
             var flightpathAutopilot = new FlightpathAutopilot(flightpathDynamics);
 

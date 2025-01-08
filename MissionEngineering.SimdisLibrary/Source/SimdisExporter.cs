@@ -92,6 +92,7 @@ public class SimdisExporter : ISimdisExporter
         AddLine(@$"PlatformIcon        {platformId} ""{platformSettings.PlatformIcon}""");
         AddLine(@$"PlatformFHN         {platformId} {platformSettings.PlatformFHN}");
         AddLine(@$"PlatformInterpolate {platformId} {platformSettings.PlatformInterpolate}");
+        AddLine(@$"PlatformCoordSystem {platformId} ""NED""");
         AddLine("");
         AddLine(@$"GenericData         {platformId} ""SIMDIS_DynamicScale"" ""1"" ""0"" ");
         AddLine(@$"GenericData         {platformId} ""SIMDIS_ScaleLevel"" ""{platformSettings.PlatformScaleLevel}"" ""0"" ");
@@ -104,10 +105,11 @@ public class SimdisExporter : ISimdisExporter
         {
             var time = fd.TimeStamp.Time;
             var lla = fd.PositionLLA;
+            var pos = fd.PositionNED;
             var vel = fd.VelocityNED;
             var att = fd.Attitude;
 
-            string line = $"PlatformData {platformId} {time} {lla.LatitudeDeg} {lla.LongitudeDeg} {lla.Altitude} {att.HeadingAngleDeg} {att.PitchAngleDeg} {att.BankAngleDeg} {vel.VelocityNorth} {vel.VelocityEast} {vel.VelocityDown}";
+            string line = $"PlatformData {platformId} {time} {pos.PositionNorth} {pos.PositionEast} {pos.PositionDown} {att.HeadingAngleDeg} {att.PitchAngleDeg} {att.BankAngleDeg} {vel.VelocityNorth} {vel.VelocityEast} {vel.VelocityDown}";
 
             AddLine(line);
         }
