@@ -40,11 +40,7 @@ public class FlightpathAutopilot
 
     public void SetFlightpathDemand(FlightpathDemand flightpathDemand)
     {
-        var flightpathDemandId = FlightpathDemand.FlightpathDemandModificationId;
-
-        flightpathDemandId++;
-
-        FlightpathDemand = flightpathDemand with { FlightpathDemandModificationId = flightpathDemandId };
+        FlightpathDemand = flightpathDemand;
     }
 
     public double GetAxialAcceleration()
@@ -90,7 +86,8 @@ public class FlightpathAutopilot
 
         var bankAngleRateDemandDeg = -bankAngleErrorDeg * FlightpathDynamics.BankAngleGain;
 
-        FlightpathDemand = FlightpathDemand with { BankAngleDemandDeg = bankAngleDemandDeg, BankAngleRateDemandDeg = bankAngleRateDemandDeg };
+        FlightpathDemand.BankAngleDemandDeg = bankAngleDemandDeg;
+        FlightpathDemand.BankAngleRateDemandDeg = bankAngleRateDemandDeg;
 
         return lateralAcceleration;
     }
@@ -118,7 +115,7 @@ public class FlightpathAutopilot
 
         verticalAcceleration = MathFunctions.LimitWithinRange(-verticalAccelerationMax, verticalAccelerationMax, verticalAcceleration);
 
-        FlightpathDemand = FlightpathDemand with { PitchAngleDemandDeg = pitchAngleDemandDeg };
+        FlightpathDemand.PitchAngleDemandDeg = pitchAngleDemandDeg;
 
         return verticalAcceleration;
     }

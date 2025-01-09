@@ -1,12 +1,19 @@
 ﻿using BenchmarkDotNet.Attributes;
+using Microsoft.VSDiagnostics;
 using MissionEngineering.Scenario;
 using MissionEngineering.Simulation.Core;
 
 namespace MissionEngineering.Simulation;
 
+[DotNetObjectAllocDiagnoser]
+[DotNetObjectAllocJobConfiguration]
+[CPUUsageDiagnoser]
+[SimpleJob(launchCount: 1, warmupCount: 1, iterationCount: 1)]
 public class SimulationBenchmarks
 {
     public int NumberOfRuns { get; set; }
+
+    public bool IsWriteData { get; set; }
 
     public SimulationSettings SimulationSettings { get; set; }
 
@@ -17,26 +24,43 @@ public class SimulationBenchmarks
     public ISimulationHarness SimulationHarness { get; set; }
 
     [Benchmark]
-    public void RunSingle()
+    public void RunSingleNoWriteData()
     {
         NumberOfRuns = 1;
 
-        Run();
-    }
-
-    [Benchmark]
-    public void RunMultiple()
-    {
-        NumberOfRuns = 10;
+        IsWriteData = false;
 
         Run();
     }
+
+    //[Benchmark]
+    //public void RunSingleWriteData()
+    //{
+    //    NumberOfRuns = 1;
+
+    //    IsWriteData = true;
+
+    //    Run();
+    //}
+
+    //[Benchmark]
+    //public void RunMultiple()
+    //{
+    //    NumberOfRuns = 10;
+
+    //    IsWriteData = true;
+
+    //    Run();
+    //}
 
     private void Run()
     {
         GenerateSimulationSettings();
         GenerateScenarioSettings();
         GenerateFlightpathDemands();
+
+        SimulationSettings.IsWriteData = IsWriteData;
+        SimulationSettings.IsCreateZipFile = IsWriteData;
 
         SimulationHarness = SimulationBuilder.CreateSimulationHarness();
 

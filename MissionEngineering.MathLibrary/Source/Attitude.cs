@@ -4,11 +4,11 @@ namespace MissionEngineering.MathLibrary;
 
 public record Attitude
 {
-    public double HeadingAngleDeg { get; init; }
+    public double HeadingAngleDeg { get; set; }
 
-    public double PitchAngleDeg { get; init; }
+    public double PitchAngleDeg { get; set; }
 
-    public double BankAngleDeg { get; init; }
+    public double BankAngleDeg { get; set; }
 
     public Attitude()
     {
@@ -21,6 +21,8 @@ public record Attitude
         BankAngleDeg = bankAngleDeg;
     }
 
+
+
     public Matrix GetTransformationMatrix()
     {
         var t1 = CalculateTransformationMatrixHeading();
@@ -28,6 +30,33 @@ public record Attitude
         var t3 = CalculateTransformationMatrixBank();
 
         var t = t3 * t2 * t1;
+
+        return t;
+    }
+
+    public Matrix GetTransformationMatrix_Inverse()
+    {
+        var headingAngle = HeadingAngleDeg.DegreesToRadians();
+        var pitchAngle = PitchAngleDeg.DegreesToRadians();
+        var bankAngle = BankAngleDeg.DegreesToRadians();
+
+        var ct = Cos(headingAngle);
+        var st = Sin(headingAngle);
+
+        var cp = Cos(pitchAngle);
+        var sp = Sin(pitchAngle);
+
+        var cw = Cos(bankAngle);
+        var sw = Sin(bankAngle);
+
+        var data = new[,]
+        {
+            { ct * cp, ct * sp * sw - st * cw, ct * sp * cw + st * sw },
+            { st* cp, st*sp * sw + ct * cw, st* sp*cw - ct * sw },
+            { -sp,    cp* sw, cp*cw }
+        };
+
+        var t = new Matrix(data);
 
         return t;
     }

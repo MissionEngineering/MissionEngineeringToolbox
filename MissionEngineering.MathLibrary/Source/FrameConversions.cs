@@ -6,7 +6,7 @@ public static class FrameConversions
 {
     public static AccelerationNED GetAccelerationNED(AccelerationTBA accelerationTBA, Attitude attitude)
     {
-        var t = attitude.GetTransformationMatrix().Transpose();
+        var t = attitude.GetTransformationMatrix_Inverse();
 
         var accelerationTBAVector = accelerationTBA.ToVector();
 

@@ -68,15 +68,15 @@ public class Flightpath
         var accelerationTBA = FlightpathAutopilot.GetAccelerationTBA(time);
         var accelerationNED = FrameConversions.GetAccelerationNED(accelerationTBA, attitude);
 
-        var velocityNED = FlightpathStateData.VelocityNED + FlightpathStateData.AccelerationNED * deltaTime;
-        var positionNED = FlightpathStateData.PositionNED + FlightpathStateData.VelocityNED * deltaTime;
+        var velocityNED = FlightpathStateData.VelocityNED + accelerationNED * deltaTime;
+        var positionNED = FlightpathStateData.PositionNED + velocityNED * deltaTime;
         var positionLLA = positionNED.ToPositionLLA(LLAOrigin.PositionLLA);
 
         var bankAngleRateDeg = FlightpathAutopilot.FlightpathDemand.BankAngleRateDemandDeg;
 
         var bankAngleDeg = bankAngleDegOld + bankAngleRateDeg * dt;
 
-        attitude = attitude with { BankAngleDeg = bankAngleDeg };
+        attitude.BankAngleDeg = bankAngleDeg;
 
         var attitudeRate = new AttitudeRate(0.0, 0.0, bankAngleRateDeg);
 
@@ -106,11 +106,6 @@ public class Flightpath
 
     public void SetFlightpathDemand(FlightpathDemand flightpathDemand)
     {
-        if (flightpathDemand.FlightpathDemandModificationId == FlightpathAutopilot.FlightpathDemand.FlightpathDemandModificationId)
-        {
-            return;
-        }
-
         FlightpathAutopilot.SetFlightpathDemand(flightpathDemand);
     }
 }

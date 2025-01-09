@@ -1,46 +1,33 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using MissionEngineering.MathLibrary;
+﻿using MissionEngineering.MathLibrary;
 using MissionEngineering.Simulation;
 
 namespace MissionEngineering.Scenario;
 
 public record FlightpathStateData
 {
-    public required int FlightpathId { get; init; }
+    public int FlightpathId { get; init; }
 
-    public required string FlightpathName { get; init; }
+    public string FlightpathName { get; init; }
 
-    public required SimulationTimeStamp TimeStamp { get; init; }
+    public SimulationTimeStamp TimeStamp { get; init; }
 
-    public required PositionLLA PositionLLA { get; init; }
+    public PositionLLA PositionLLA { get; init; }
 
-    public required PositionNED PositionNED { get; init; }
+    public PositionNED PositionNED { get; init; }
 
-    public required VelocityNED VelocityNED { get; init; }
+    public VelocityNED VelocityNED { get; init; }
 
-    public required AccelerationNED AccelerationNED { get; init; }
+    public AccelerationNED AccelerationNED { get; init; }
 
-    public required AccelerationTBA AccelerationTBA { get; init; }
+    public AccelerationTBA AccelerationTBA { get; init; }
 
-    public required Attitude Attitude { get; init; }
+    public Attitude Attitude { get; init; }
 
-    public required AttitudeRate AttitudeRate { get; init; }
+    public AttitudeRate AttitudeRate { get; init; }
 
-    public required FlightpathDemand FlightpathDemand { get; set; }
+    public FlightpathDemand FlightpathDemand { get; set; }
 
-    [SetsRequiredMembers]
     public FlightpathStateData()
     {
-        FlightpathId = 0;
-        FlightpathName = "";
-        TimeStamp = new SimulationTimeStamp();
-        PositionLLA = new PositionLLA(0.0, 0.0, 0.0);
-        PositionNED = new PositionNED(0.0, 0.0, 0.0);
-        VelocityNED = new VelocityNED(0.0, 0.0, 0.0);
-        AccelerationNED = new AccelerationNED(0.0, 0.0, 0.0);
-        AccelerationTBA = new AccelerationTBA(0.0, 0.0, 0.0);
-        Attitude = new Attitude(0.0, 0.0, 0.0);
-        AttitudeRate = new AttitudeRate(0.0, 0.0, 0.0);
-        FlightpathDemand = new FlightpathDemand();
     }
 }
